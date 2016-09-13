@@ -27,17 +27,23 @@
 
 ## Architekturdesign
   - MVC (requested)
+
 ## Zielplattform
   - Ruby on Rails (web application, Active Record...)
+
 ## Benutzeroberfläche
   - Twitter Bootstrap, HTML/CSS
+
 ## Datenmodell (?)
   - Active Record, User - Employee - Admin, Tool - Github - Trello)
+
 ## Rechteverteilung
   - employee
   - admin access
+
 ## Schnittstellen
   - API for reporting tool
+
 ## Pflichtenheft
 
 # Projektdurchführung/Implementierung
@@ -46,6 +52,7 @@
   - employee view
   - admin view
   - active record, single table inheritance
+
 ## Implementierung der Benutzeroberfläche
   - employee view
   - admin view
