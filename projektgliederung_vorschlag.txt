@@ -1,0 +1,27 @@
+Projektinitialisierung
+ - Proj. beschreibung
+ - Projektumfeld
+ - Ist-Analyse
+ - Soll-Konzept
+ == Lasten/Pflichtenheft (Prjektstart)
+Planungsphase
+ - Zeit
+ - Ressourcen
+ - Entwicklungsumgebung
+ - Personal
+
+ -- Ablauf/UML wtf Diagramme
+
+Implementierung
+ - Einleitung
+ - Backend
+ - Middleware
+ - Frontend
+
+Test / Integration
+ - Testing
+ - Integration
+
+ - Kundenübergabe
+ - Zusammenfassung
+ - Ausblick  /Fazit
