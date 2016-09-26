@@ -12,7 +12,7 @@
 
 ## Projektumfeld
   - SUSE Linux GmbH (key numbers, fields of operation)
-  
+
 ## Projektschnittstellen
   - Github
   - Trello
@@ -23,13 +23,14 @@
   - high amount of effort to create reports and maintenance
   - usage of version management services, namely Github
   - usage of scrum tools like Trello
+  - ^ approved by BR
   - external services which are not maintained by SUSE,
   employees mostly carry "private" accounts used for
   professional work
   - therefore SUSE organizations need to be checked for
   employee membership in order to maintain compliant access
-  management
-  
+  management and to be able to track contributions
+
 ## Soll-Konzept
 
   - web application as a self-service tool for employees
@@ -41,16 +42,25 @@
 
 ## Zeitplanung
 
+  - cmp. from proposal
+
 ## Ressourcenplanung
 
+  - development, tests and build running on local machine
+  - no additional hardware necessary
+
 ## Entwicklungsprozess
-  - Agile?
+  - Agile
   - Test driven development (explanation)
-  
+  - Ruby on Rails as requested
+  - MVC as requested
+
 ## Personal
 
+  - single developer, trainee
+
 ## Architekturdesign
-  - MVC (requested)
+  - MVC
 
 ## Zielplattform
   - Ruby on Rails (web application, Active Record...)
@@ -74,6 +84,10 @@
 ## Schnittstellen
   - API for reporting tool etsync
 
+## Paketierung
+
+  - rpm with all dependencies installable on (SLES12) production machine
+
 # Implementierung
 
 ## Einleitung
@@ -86,30 +100,35 @@
   - separate tables for employees and administrators prevent access and
   security issues (can only be changed from production node and not by setting
   a flag (Rails mechanism: type-attribute triggers STI))
-  
+  - `code examples go here`
+
 ## Middleware/Konnektoren
   - Github Octokit API
   - Trello API
+  - `code examples go here`
 
 ## Implementierung der Benutzeroberfläche
   - employee view
   - admin view
   - team lead view
   - Twitter Bootstrap
+  - `code examples go here`
 
 ## Interne API
 
   - JSON
   - export of aliases, github, trello aliases
   - query with etsync
-  
+  - `code examples go here`
+
 ## Testing
 
   - with internal data and test suite, usability tests
+  - `code examples go here`
 
 ## Paketierung
-  
-  - packaged for SLE12 with all dependencies 
+
+  - packaged for SLE12 with all dependencies
 
 ## Deployment
 
@@ -119,8 +138,12 @@
 
 ## Abnahme
   - presentation/demonstration for stakeholders, minor fixes
-  
-## Schulung?
+
+## Firmenweite Einführung
+
+  - Announcement on internal mailing lists via project supervisor
+  - regular reminders for current and new employees to maintain their
+    records
 
 # Dokumentation
 
@@ -129,6 +152,8 @@
   - > excerpt from document
 
 ## Entwicklerdokumentation?
+
+## Projektdokumentation
 
 # Fazit
 
