@@ -1,5 +1,7 @@
 # Einleitung
 
+# Projektinitialisierung
+
 ## Projektbeschreibung
 
   - web application for management of access rights to external
@@ -8,17 +10,17 @@
   to facilitate checks and creating reports to maintain a membership
   record mapping current employee status
 
-## Projektziel
-
-  - web application as a self-service tool for employees
-  to maintain their user record and aliases
-  - API for administrators to generate reports and checks about
-  membership in organizations
-
 ## Projektumfeld
   - SUSE Linux GmbH (key numbers, fields of operation)
+  
+## Projektschnittstellen
+  - Github
+  - Trello
+  - etsync
 
-## Projektbegründung
+## Ist-Analyse
+  - manual comparison of member lists, aliases, etc.
+  - high amount of effort to create reports and maintenance
   - usage of version management services, namely Github
   - usage of scrum tools like Trello
   - external services which are not maintained by SUSE,
@@ -27,31 +29,25 @@
   - therefore SUSE organizations need to be checked for
   employee membership in order to maintain compliant access
   management
-## Projektschnittstellen
-  - Github
-  - Trello
-  - etsync
+  
+## Soll-Konzept
+
+  - web application as a self-service tool for employees
+  to maintain their user record and aliases
+  - API for administrators to generate reports and checks about
+  membership in organizations
 
 # Projektplanung
 
-## Phasen
-## Kosten-/Ressourcenplanung
+## Zeitplanung
+
+## Ressourcenplanung
+
 ## Entwicklungsprozess
   - Agile?
   - Test driven development (explanation)
-
-# Analysephase
-
-## Ist-Zustand
-  - manual comparison of member lists, aliases, etc.
-  - high amount of effort to create reports and maintenance
-## Wirtschaftlichkeit
-  - high amount of extra work and time for team leads and owners
-
-## Lastenheft
-  - >excerpt from document<
-
-# Entwurfsphase
+  
+## Personal
 
 ## Architekturdesign
   - MVC (requested)
@@ -78,12 +74,11 @@
 ## Schnittstellen
   - API for reporting tool etsync
 
-## Pflichtenheft
-  - >excerpt from document<
+# Implementierung
 
-# Projektdurchführung/Implementierung
+## Einleitung
 
-## Implementierung der Datenstrukturen
+## Implementierung des Backends
   - employee view
   - admin view
   - active record, solved by using single table inheritance as models are
@@ -91,18 +86,41 @@
   - separate tables for employees and administrators prevent access and
   security issues (can only be changed from production node and not by setting
   a flag (Rails mechanism: type-attribute triggers STI))
+  
+## Middleware/Konnektoren
+  - Github Octokit API
+  - Trello API
 
 ## Implementierung der Benutzeroberfläche
   - employee view
   - admin view
   - team lead view
+  - Twitter Bootstrap
+
+## Interne API
+
+  - JSON
+  - export of aliases, github, trello aliases
+  - query with etsync
+  
+## Testing
+
+  - with internal data and test suite, usability tests
+
+## Paketierung
+  
+  - packaged for SLE12 with all dependencies 
+
+## Deployment
+
+  - deployed together with SUSE IT team
 
 # Projektabschluss
 
 ## Abnahme
   - presentation/demonstration for stakeholders, minor fixes
-## Deployment/Einführung
-  - deployment in cooperation with infrastructure team
+  
+## Schulung?
 
 # Dokumentation
 
