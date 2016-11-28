@@ -1,0 +1,58 @@
+% !TEX root = ../Projektdokumentation.tex
+\section{Einleitung}
+\label{sec:Einleitung}
+
+\subsection{Projektbeschreibung}
+\label{sec:Projektbeschreibung}
+Zur Entwicklung der Open-Source-Software setzt die SUSE Linux GmbH in Teilen der Entwicklung
+auf externe Tools und Services. Dies wird besonders im Bereich der Codeentwicklung und -pflege
+deutlich, da neben den firmeneigenen Entwicklern auch Partner sowie Open-Source-Community
+mitarbeiten. Hierbei kann es zu der Diskrepanz kommen, dass Entwickler neben ihrem Firmenaccount
+auch private Accounts zur Entwicklung benutzen, wodurch eine genaue Zuordnung der Accounts und
+ein Überblick über Zugriffsberechtigungen nahezu unmöglich wird.
+
+Zur Lösung dieser Problematik soll eine Applikation entwickelt werden, welche es ermöglicht
+eine Zuordnung der firmeninternen Accounts auf mögliche Accounts externer Services durchzuführen.
+Das Ergebnis soll mittels einer API abrufbar sein.
+Dabei soll die Applikation in ihrer Grundfunktion dem Gedanken der Self-Service-Technologies folgen,
+damit Latenzen bei Änderungen der Accountinformationen minimiert und administratives Personal
+entlastet wird. Um dies möglichst plattformunabhängig zu gestalten, erfolgt die Realisierung als
+Webapplikation.
+
+Da externe Services eine Zulassung durch den Betriebsrat und die IT-Sicherheit benötigen, beschränkt
+sich die erste Version darauf, die Accountinformationen der Applikationen Github
+(verzeichnisorganisierte Versionsverwaltung von Quellcode) und Trello (Tool zur Steuerung von
+agilen Software-Projekten) einzubinden.
+
+\subsection{Projektumfeld}
+\label{sec:Projektumfeld}
+Die SUSE Linux GmbH wurde 1992 gegründet und ist seit 2014 eine Tochtergesellschaft der Micro Focus
+AG. Weltweit beschäftigt das Unternehmen etwa 750 Mitarbeiter, welche auf die Standorte Nürnberg,
+Prag, Peking und Provo (USA) verteilt sind. Der Hauptsitz der Firma befindet sich in Nürnberg,
+ebenso wie der Hauptteil der Softwareentwicklung.
+
+Das Kerngeschäft der SUSE Linux GmbH umfasst die Entwicklung einer Linux-basierten Distribution.
+Für Privatkunden werden hierzu die Distributionen der openSUSE-Familie, die größtenteils von der
+Community entwickelt werden, bereitgestellt, für Geschäftskunden die Produkte der SUSE Linux
+Enterprise-Familie.
+
+Die Entwicklung erfolgt nach dem Open-Source-Prinzip.
+Durchgeführt wurde das Projekt im Team SUSE IT, die neben der Infrastruktur auch die
+Entwicklungsumgebung, die sogenannten Engineering Services, bereitstellen.
+
+\subsection{Projektschnittstellen}
+\label{sec:Projektschnittstellen}
+Die Applikation nutzt mehrere APIs um z.B. die Betriebszugehörigkeit oder verschiedene Informationen
+aus den Datenbanken der externen Services abzufragen.
+% \begin{itemize}
+% 	\item Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)?
+% 	\item Wer genehmigt das Projekt \bzw stellt Mittel zur Verfügung?
+% 	\item Wer sind die Benutzer der Anwendung?
+% 	\item Wem muss das Ergebnis präsentiert werden?
+% \end{itemize}
+
+\subsection{Ist-Analyse}
+\label{sec:Ist-Analyse}
+
+\subsection{Soll-Konzept}
+\label{sec:Soll-Konzept}
