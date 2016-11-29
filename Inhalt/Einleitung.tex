@@ -2,6 +2,22 @@
 \section{Einleitung}
 \label{sec:Einleitung}
 
+\subsection{Projektumfeld}
+\label{sec:Projektumfeld}
+Die SUSE Linux GmbH wurde 1992 gegründet und ist seit 2014 eine Tochtergesellschaft der Micro Focus
+AG. Weltweit beschäftigt das Unternehmen etwa 750 Mitarbeiter, welche auf die Standorte Nürnberg,
+Prag, Peking und Provo (USA) verteilt sind. Der Hauptsitz der Firma befindet sich in Nürnberg,
+ebenso wie der Hauptteil der Softwareentwicklung.
+
+Das Kerngeschäft der SUSE Linux GmbH umfasst die Entwicklung einer Linux-basierten Distribution.
+Für Privatkunden werden hierzu die Distributionen der openSUSE-Familie, die größtenteils von der
+Community entwickelt werden, bereitgestellt, für Geschäftskunden die Produkte der SUSE Linux
+Enterprise-Familie.
+
+Die Entwicklung erfolgt nach dem Open-Source-Prinzip.
+Durchgeführt wurde das Projekt im Team SUSE IT, die neben der Infrastruktur auch die
+Entwicklungsumgebung, die sogenannten Engineering Services, bereitstellen.
+
 \subsection{Projektbeschreibung}
 \label{sec:Projektbeschreibung}
 Zur Entwicklung der Open-Source-Software setzt die SUSE Linux GmbH in Teilen der Entwicklung
@@ -24,35 +40,36 @@ sich die erste Version darauf, die Accountinformationen der Applikationen Github
 (verzeichnisorganisierte Versionsverwaltung von Quellcode) und Trello (Tool zur Steuerung von
 agilen Software-Projekten) einzubinden.
 
-\subsection{Projektumfeld}
-\label{sec:Projektumfeld}
-Die SUSE Linux GmbH wurde 1992 gegründet und ist seit 2014 eine Tochtergesellschaft der Micro Focus
-AG. Weltweit beschäftigt das Unternehmen etwa 750 Mitarbeiter, welche auf die Standorte Nürnberg,
-Prag, Peking und Provo (USA) verteilt sind. Der Hauptsitz der Firma befindet sich in Nürnberg,
-ebenso wie der Hauptteil der Softwareentwicklung.
+\subsection{Ist-Analyse}
+\label{sec:Ist-Analyse}
+Bei den verwendeten externen Services Github und Trello können Unternehmen zur Abgrenzung und
+Verwaltung ihrer firmeninternen Ressourcen und Informationen sogenannte Organisationen anlegen, zu
+denen Accounts von Mitarbeitern hinzugefügt werden und ihnen besondere Zugriffsrechte einzuräumen.
+So haben beispielsweise nur Mitarbeiter Schreibrechte auf den Quellcodeverzeichnissen bei Github und
+Mitglieder der Open-Source-Community sowie Partner können in der Regel nur Vorschläge, sogenannte
+Pull Requests, bei dem jeweiligen Projekt einreichen.
 
-Das Kerngeschäft der SUSE Linux GmbH umfasst die Entwicklung einer Linux-basierten Distribution.
-Für Privatkunden werden hierzu die Distributionen der openSUSE-Familie, die größtenteils von der
-Community entwickelt werden, bereitgestellt, für Geschäftskunden die Produkte der SUSE Linux
-Enterprise-Familie.
+Der Abgleich der internen Mitarbeiter- mit den Userlisten innerhalb der angelegten Firmenorganisationen
+erfolgt bisher manuell. Dies bedeutet, dass beispielsweise für jeden neuen
+Mitarbeiter persönlich oder schriftlich angefragt werden muss welches User-Alias er bei den
+jeweiligen Services führt, um dessen Account dann zur Organisation hinzuzufügen und ihm
+Zugriff zu ermöglichen. Ist dieser Aufwand bereits groß, erhöht er sich bei Mitarbeiteraustritten,
+wenn es gegebenenfalls auf Grund fehlender Kontaktmöglichkeit es sehr mühsam wird eine Zuordnung
+nachzuvollziehen.
 
-Die Entwicklung erfolgt nach dem Open-Source-Prinzip.
-Durchgeführt wurde das Projekt im Team SUSE IT, die neben der Infrastruktur auch die
-Entwicklungsumgebung, die sogenannten Engineering Services, bereitstellen.
+\subsection{Soll-Konzept}
+\label{sec:Soll-Konzept}
 
 \subsection{Projektschnittstellen}
 \label{sec:Projektschnittstellen}
 Die Applikation nutzt mehrere APIs um z.B. die Betriebszugehörigkeit oder verschiedene Informationen
 aus den Datenbanken der externen Services abzufragen.
-% \begin{itemize}
-% 	\item Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)?
-% 	\item Wer genehmigt das Projekt \bzw stellt Mittel zur Verfügung?
-% 	\item Wer sind die Benutzer der Anwendung?
-% 	\item Wem muss das Ergebnis präsentiert werden?
-% \end{itemize}
 
-\subsection{Ist-Analyse}
-\label{sec:Ist-Analyse}
+Mitarbeiterspezifische Informationen, wie Name, Standort oder Vorgesetzter, werden aus dem
+firmeneigenen eDirectory abgefragt.
+Zur Abfrage der Organisationszugehörigkeit werden die Schnittstellen der genannten Tools Github und Trello
+verwendet.
 
-\subsection{Soll-Konzept}
-\label{sec:Soll-Konzept}
+Die Schnittstelle der Applikation, welche die gesammelten Informationen über den Mitarbeiter
+bereitstellt, wird in dem Administrationstool etsync konsumiert, welches für die Administratoren
+der externen Organisationen bei Github und Trello entwickelt wurde.
