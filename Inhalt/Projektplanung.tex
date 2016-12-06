@@ -6,57 +6,74 @@
 \subsection{Projektphasen}
 \label{sec:Projektphasen}
 
-\begin{itemize}
-	\item In welchem Zeitraum und unter welchen Rahmenbedingungen (\zB Tagesarbeitszeit) findet das Projekt statt?
-	\item Verfeinerung der Zeitplanung, die bereits im Projektantrag vorgestellt wurde.
-\end{itemize}
-
-\paragraph{Beispiel}
-Tabelle~\ref{tab:Zeitplanung} zeigt ein Beispiel für eine grobe Zeitplanung.
-\tabelle{Zeitplanung}{tab:Zeitplanung}{ZeitplanungKurz}\\
-Eine detailliertere Zeitplanung findet sich im \Anhang{app:Zeitplanung}.
-
-
-\subsection{Abweichungen vom Projektantrag}
-\label{sec:AbweichungenProjektantrag}
-
-\begin{itemize}
-	\item Sollte es Abweichungen zum Projektantrag geben (\zB Zeitplanung, Inhalt des Projekts, neue Anforderungen), müssen diese explizit aufgeführt und begründet werden.
-\end{itemize}
-
+% \begin{itemize}
+% 	\item In welchem Zeitraum und unter welchen Rahmenbedingungen (\zB Tagesarbeitszeit) findet das Projekt statt?
+% 	\item Verfeinerung der Zeitplanung, die bereits im Projektantrag vorgestellt wurde.
+% \end{itemize}
+%
+% \paragraph{Beispiel}
+% Tabelle~\ref{tab:Zeitplanung} zeigt ein Beispiel für eine grobe Zeitplanung.
+% \tabelle{Zeitplanung}{tab:Zeitplanung}{ZeitplanungKurz}\\
+% Eine detailliertere Zeitplanung findet sich im \Anhang{app:Zeitplanung}.
+%
+%
+% \subsection{Abweichungen vom Projektantrag}
+% \label{sec:AbweichungenProjektantrag}
+%
+% \begin{itemize}
+% 	\item Sollte es Abweichungen zum Projektantrag geben (\zB Zeitplanung, Inhalt des Projekts, neue Anforderungen), müssen diese explizit aufgeführt und begründet werden.
+% \end{itemize}
 
 \subsection{Ressourcenplanung}
 \label{sec:Ressourcenplanung}
-
-\begin{itemize}
-	\item Detaillierte Planung der benötigten Ressourcen (Hard-/Software, Räumlichkeiten \usw).
-	\item \Ggfs sind auch personelle Ressourcen einzuplanen (\zB unterstützende Mitarbeiter).
-	\item Hinweis: Häufig werden hier Ressourcen vergessen, die als selbstverständlich angesehen werden (\zB PC, Büro).
-\end{itemize}
-
-\subsection{Personalplanung}
+\subsubsection{Personalplanung}
 \label{sec:Personalplanung}
+Das für die Entwicklung benötigte Personal besteht aus einem Auszubildenden, der dafür von seiner
+regulären Mitarbeit im derzeitigen Team freigestellt wird.
+\subsubsection{Kostenplanung}
+\label{sec:Kostenplanung}
+Die Personalkosten belaufen sich auf ein Auszubildendengehalt, wodurch lediglich Stromkosten für die
+zur Projekterstellung eingesetzte Hardware anfallen. Durch die ausschließliche Nutzung einer
+Entwicklungsumgebung und Werkzeugen aus dem Open-Source-Bereich fallen keine zusätzlichen Kosten wie
+Software-Lizenzen an.
 
 \subsection{Entwicklungsprozess}
 \label{sec:Entwicklungsprozess}
-\begin{itemize}
-	\item Agile
-	\item TDD
-	\item RoR
-\end{itemize}
+Der Entwicklungsprozess erfolgt test-driven, was bedeutet dass vor dem Schreiben des eigentichen
+Quellcodes einer Funktionalität zunächst der dazugehörige Test entwickelt wird. Diese Vorgehensweise
+ermöglicht einen abstrakteren und zielorientierteren Blick auf die eigentlichen geforderten
+Funktionen der Applikation, in dem als erstes eine Überlegung über das Ergebnis einer Funktion
+und daraufhin die eigentliche Implementierung des jeweiligen Algorithmus erfolgt, welcher zu dem
+gewünschten Ergebnis führt.
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
+Zur Umsetzung der geforderten Modularität der Applikation bietet sich das sogenannte
+\textit{Model-View-Controller-Schema} (MVC) an. Dieses ist ein gängiges Schema beim Aufbau von Webapplikationen und
+besteht aus drei Teilen:
 \begin{itemize}
-	\item MVC
+	\item das \textit{Model}, welches grob die einzelnen Tabellen einer Datenbank repräsentiert. Es enthält in
+	der Regel zusätzliche Logik und Regeln, die zur Verwaltung und Zusammensetzung von Attributen
+	eines Datenbankobjektes notwendig sind.
+	\item der \textit{View}, welcher eine Ausgabe der gewünschten Daten bereitstellt. Im Kontext einer
+	Webapplikation ist dies die eigentlich dargestellte Webseite in HTML/CSS.
+	\item der \textit{Controller}, welcher die Schnittstelle zwischen Model und View darstellt.
+	Im Controller werden Eingaben verarbeitet und Befehle an das Model weitergegeben, welche
+	die angeforderten Informationen an den Controller zurückgibt, der diese wiederum an den
+	entsprechenden View verteilt.
 \end{itemize}
+Diese Aufteilung ermöglicht ein strukturierte und übersichtliche Entwicklung, da Funktionslogik,
+Datenbankoperationen und Ausgabelogik klar getrennt und jeweils namentlich zugehörig gekennzeichnet
+sind.
 
-\subsection{Zielplattform}
-\label{sec:Zielplattform}
-\begin{itemize}
-	\item RoR because webapp
-	\item easy implementation, easy to configure
-\end{itemize}
+TODO: enter figure of MVC schematics
+
+\subsubsection{Wahl der Programmiersprache}
+\label{sec:Wahl der Programmiersprache}
+
+\subsubsection{Wahl des Frameworks}
+\label{sec:Wahl des Frameworks}
+
 
 \subsection{Benutzeroberfläche}
 \label{sec:Benutzeroberfläche}
