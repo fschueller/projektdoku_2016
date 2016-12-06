@@ -69,10 +69,12 @@ zentrale Plattform geschaffen werden, die eine gesammelte Zuordnung der Mitarbei
 externen Nutzerkonten zum Abgleich bereitstellt. Die Datensätze sollen von den jeweiligen
 Mitarbeitern selbst verwaltet und gepflegt werden. Dadurch bleibt alleine der Abgleich mit den
 Nutzerlisten der bei den externen Services angelegten Organisationen und ein eventuelles Hinzufügen
-oder Entfernen des Mitarbeiters aus der Organisation.
+oder Entfernen des Mitarbeiters aus der Organisation übrig.
 
 Die Plattform soll als Webapplikation gestaltet werden, was eine plattformunabhängige Nutzung
-ermöglicht.
+ermöglicht. Zusätzlich soll die Implementierung modular und leicht erweiterbar sein, um zukünftig
+geplante Funktionen einfach hinzufügen und warten zu können. Ebenso soll die Applikation über Tests
+verfügen, welche jene für andere Entwickler in Zukunft nachvollziehbar macht.
 
 \subsection{Projektschnittstellen}
 \label{sec:Projektschnittstellen}
@@ -81,8 +83,8 @@ aus den Datenbanken der externen Services abzufragen.
 
 Mitarbeiterspezifische Informationen, wie Name, Standort oder Vorgesetzter, werden aus dem
 firmeneigenen eDirectory abgefragt.
-Zur Abfrage der Organisationszugehörigkeit werden die Schnittstellen der genannten Tools Github und Trello
-verwendet.
+Zur Abfrage der Organisationszugehörigkeit werden die externen Schnittstellen der genannten Tools
+Github und Trello verwendet.
 
 Die Schnittstelle der Applikation, welche die gesammelten Informationen über den Mitarbeiter
 bereitstellt, wird in dem Administrationstool etsync konsumiert, welches für die Administratoren
