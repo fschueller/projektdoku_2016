@@ -6,6 +6,8 @@
 \subsection{Projektphasen}
 \label{sec:Projektphasen}
 
+TODO: enter planning table here
+
 % \begin{itemize}
 % 	\item In welchem Zeitraum und unter welchen Rahmenbedingungen (\zB Tagesarbeitszeit) findet das Projekt statt?
 % 	\item Verfeinerung der Zeitplanung, die bereits im Projektantrag vorgestellt wurde.
@@ -39,7 +41,7 @@ Software-Lizenzen an.
 
 \subsection{Entwicklungsprozess}
 \label{sec:Entwicklungsprozess}
-Der Entwicklungsprozess erfolgt test-driven, was bedeutet dass vor dem Schreiben des eigentichen
+Der Entwicklungsprozess erfolgt \textit{test-driven}, was bedeutet dass vor dem Schreiben des eigentichen
 Quellcodes einer Funktionalität zunächst der dazugehörige Test entwickelt wird. Diese Vorgehensweise
 ermöglicht einen abstrakteren und zielorientierteren Blick auf die eigentlichen geforderten
 Funktionen der Applikation, in dem als erstes eine Überlegung über das Ergebnis einer Funktion
@@ -56,7 +58,7 @@ besteht aus drei Teilen:
 	der Regel zusätzliche Logik und Regeln, die zur Verwaltung und Zusammensetzung von Attributen
 	eines Datenbankobjektes notwendig sind.
 	\item der \textit{View}, welcher eine Ausgabe der gewünschten Daten bereitstellt. Im Kontext einer
-	Webapplikation ist dies die eigentlich dargestellte Webseite in HTML/CSS.
+	Webapplikation ist dies die eigentlich dargestellte Webseite in \textit{HTML/CSS}.
 	\item der \textit{Controller}, welcher die Schnittstelle zwischen Model und View darstellt.
 	Im Controller werden Eingaben verarbeitet und Befehle an das Model weitergegeben, welche
 	die angeforderten Informationen an den Controller zurückgibt, der diese wiederum an den
@@ -70,25 +72,48 @@ TODO: enter figure of MVC schematics
 
 \subsubsection{Wahl der Programmiersprache}
 \label{sec:Wahl der Programmiersprache}
+Als Programmiersprache wurden \textit{Ruby} und das zugehörige Web-Framework \textit{Ruby on Rails}
+gewählt.
 
-\subsubsection{Wahl des Frameworks}
-\label{sec:Wahl des Frameworks}
+Ruby basiert auf den Programmiersprachen Perl, Smalltalk, Eiffel, Ada und Lisp und legt Wert auf
+die Balance von \textit{funktionaler} und \textit{imperativer Programmierung}. So verzichtet Ruby beispielsweise auf
+Klammern zur Kennzeichnung von Codeblöcken und behandelt jeden Bestandteil des Codes, wie Variablen,
+als ein \textit{Objekt}, welches eigene Methoden besitzt. Das macht die Verarbeitung und Manipulation von
+Informationen sehr intuitiv und unterstreicht das Prinzip Rubys, den Programmierer nicht durch
+Restriktionen und sprachlichen Eigenheiten bei seiner eigentlichen Arbeit zu behindern.
 
+Ruby und sein Framework Ruby on Rails werden quelloffen verwaltet und entwickelt. Neben den
+existierenden Programmbibliotheken existieren zusätzlich von der Community bereitgestellte Module,
+sogenannte \textit{Gems}, welche wie kleine zusätzliche Bibliotheken behandelt werden können. Die
+Einbindung dieser Gems in ein bestehendes Projekt vermeidet Duplikation und erspart viel
+Entwicklungszeit.
 
 \subsection{Benutzeroberfläche}
 \label{sec:Benutzeroberfläche}
-\begin{itemize}
-	\item Twitter Bootstrap
-	\item functional drop-in solution as there's no designer available
-\end{itemize}
+Da ohne die Mitwirkung eines darauf spezialisierten \textit{UI/UX}-Designers möglichst zeiteffizient
+eine für Nutzer verständliche Oberfläche realisiert werden musste, fiel die Entscheidung auf
+\textit{Twitter Bootstrap}.
+Das CSS-Framework Twitter Bootstrap wird häufig zur Gestaltung von Webseiten und
+-applikationen verwendet, da es ein über eine umfangreiche Bibliothek an Gestaltungsvorlagen
+verfügt und sehr leicht in ein Projekt zu integrieren ist. Auch unerfahrenen Anwendern gelingt damit
+mühelos ein ansprechende und responsive Nutzeroberfläche.
 
 \subsection{Datenmodell}
 \label{sec:Datenmodell}
-\begin{itemize}
-	\item insert database model chart here?
-	\item single table inheritance
-	\item tool model for every kind of tool available
-\end{itemize}
+Das Projekt verfügt grob über zwei Informationsträger, die in einer Datenbank abgebildet werden
+sollen: einen \textit{User} und ein zugehöriges \textit{Tool}.
+
+TODO: insert ER-model
+
+Da für die Applikation zusätzliche Spezialisierungen, wie eine Administrator-Rolle und verschiedene
+externe Services, notwendig sind, wurden diese Beziehungen mit Hilfe der sogenannten
+\textit{Single Table Inheritance} (STI) realisiert.
+
+TODO: insert UML-Class-Model feat. STI
+
+Diese spezielle Vererbungsstrategie lässt sich mit Hilfe der in Rails eingebauten
+\textit{Active Record}-Engine durch das einfache Hinzufügen eines Typ-Attributs an das Model
+umsetzen.
 
 \subsection{Rechteverteilung}
 \label{sec:Rechteverteilung}
@@ -101,6 +126,7 @@ TODO: enter figure of MVC schematics
 \label{sec:Schnittstellen}
 \begin{itemize}
 	\item API for etsync
+	\item API talking to LDAP server for authentication + user info
 \end{itemize}
 
 \subsection{Paketierung}
