@@ -98,9 +98,20 @@ Das CSS-Framework Twitter Bootstrap wird häufig zur Gestaltung von Webseiten un
 verfügt und sehr leicht in ein Projekt zu integrieren ist. Auch unerfahrenen Anwendern gelingt damit
 mühelos ein ansprechende und responsive Nutzeroberfläche.
 
+\subsection{Rechteverteilung}
+\label{sec:Rechteverteilung}
+Die Applikation soll von zwei verschiedenen Arten von Usern verwendet werden: dem regulären
+Mitarbeiter, der einzig Zugriff auf seine verwalteten Informationen zu externen Services hat, und
+einem Administrator, der neben der Bearbeitung seines eigenen Datensatzes auch jene aller in der
+Datenbank vorhandenen Mitarbeiter einsehen, abfragen und löschen kann.
+
+Diese Rechteverteilung kann über ein \textit{Flag} gelöst werden, was die einfachste Methode ist.
+Sie ist allerdings aus sicherheitsrelevanter Sicht sehr anfällig und leicht zu manipulieren,
+weswegen entschieden wurde, die Rechteverteilung auf Datenbankebene zu realisieren.
+
 \subsection{Datenmodell}
 \label{sec:Datenmodell}
-Das Projekt verfügt grob über zwei Informationsträger, die in einer Datenbank abgebildet werden
+Das Projekt verfügt grob über zwei Informationsträger, die in der Datenbank abgebildet werden
 sollen: einen \textit{User} und ein zugehöriges \textit{Tool}.
 
 TODO: insert ER-model
@@ -115,23 +126,18 @@ Diese spezielle Vererbungsstrategie lässt sich mit Hilfe der in Rails eingebaut
 \textit{Active Record}-Engine durch das einfache Hinzufügen eines Typ-Attributs an das Model
 umsetzen.
 
-\subsection{Rechteverteilung}
-\label{sec:Rechteverteilung}
-\begin{itemize}
-	\item general access for regular employee: maintenance of record
-	\item admin access for list of all records and API
-\end{itemize}
-
 \subsection{Schnittstellen}
 \label{sec:Schnittstellen}
-\begin{itemize}
-	\item API for etsync
-	\item API talking to LDAP server for authentication + user info
-\end{itemize}
+Die Hauptaufgabe der Applikation ist die Bereitstellung der gesammelten Informationen zu den
+Mitarbeitern und deren eingetragenen Informationen zu ihren genutzten Services. Dazu soll eine
+eigene API innerhalb der Applikation entwickelt werden, welche die Informationen im \textit{JSON}-
+Format ausgibt. Diese API kann nur authentifiziert angesprochen werden, d.h. der User muss eine
+Administratorrolle besitzen, um Zugriff zur Schnittstelle zu erhalten.
 
 \subsection{Paketierung}
 \label{sec:Paketierung}
-\begin{itemize}
-	\item RPM
-	\item all dependencies included
-\end{itemize}
+Gemäß der Richtline des Teams, in dem die Applikation entwickelt wurde, wird jene als \textit{RPM}
+paketiert. Dies ermöglicht eine einfache und sofort funktionsfähige Installation, da alle
+notwendigen Programmabhängigkeiten im Paket definiert und während des Installationsprozesses
+abgerufen und mitinstalliert werden. Dadurch ist beispielsweise auch bei Bedarf eine problemlose 
+Migration auf einen anderen Server möglich.
