@@ -36,8 +36,8 @@ regulären Mitarbeit im derzeitigen Team freigestellt wird.
 \label{sec:Kostenplanung}
 Die Personalkosten belaufen sich auf ein Auszubildendengehalt, wodurch lediglich Stromkosten für die
 zur Projekterstellung eingesetzte Hardware anfallen. Durch die ausschließliche Nutzung einer
-Entwicklungsumgebung und Werkzeugen aus dem Open-Source-Bereich fallen keine zusätzlichen Kosten wie
-Software-Lizenzen an.
+Entwicklungsumgebung und Werkzeugen aus dem Open-Source-Bereich entstehen keine zusätzlichen Kosten
+wie Software-Lizenzen.
 
 \subsection{Entwicklungsprozess}
 \label{sec:Entwicklungsprozess}
@@ -51,7 +51,7 @@ gewünschten Ergebnis führt.
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
 Zur Umsetzung der geforderten Modularität der Applikation bietet sich das sogenannte
-\textit{Model-View-Controller-Schema} (MVC) an. Dieses ist ein gängiges Schema beim Aufbau von Webapplikationen und
+\textit{Model-View-Controller-Schema} (\acs{MVC}) an. Dieses ist ein gängiges Schema beim Aufbau von Webapplikationen und
 besteht aus drei Teilen:
 \begin{itemize}
 	\item das \textit{Model}, welches grob die einzelnen Tabellen einer Datenbank repräsentiert. Es enthält in
@@ -76,11 +76,12 @@ Als Programmiersprache wurden \textit{Ruby} und das zugehörige Web-Framework \t
 gewählt.
 
 Ruby basiert auf den Programmiersprachen Perl, Smalltalk, Eiffel, Ada und Lisp und legt Wert auf
-die Balance von \textit{funktionaler} und \textit{imperativer Programmierung}. So verzichtet Ruby beispielsweise auf
-Klammern zur Kennzeichnung von Codeblöcken und behandelt jeden Bestandteil des Codes, wie Variablen,
-als ein \textit{Objekt}, welches eigene Methoden besitzt. Das macht die Verarbeitung und Manipulation von
-Informationen sehr intuitiv und unterstreicht das Prinzip Rubys, den Programmierer nicht durch
-Restriktionen und sprachlichen Eigenheiten bei seiner eigentlichen Arbeit zu behindern.
+die Balance von \textit{funktionaler} und \textit{imperativer Programmierung}. So verzichtet Ruby
+beispielsweise auf Klammern zur Kennzeichnung von Codeblöcken und behandelt jeden Bestandteil des
+Codes, wie Variablen,als ein \textit{Objekt}, welches eigene Methoden besitzt. Das macht die
+Verarbeitung und Manipulation von Informationen sehr intuitiv und unterstreicht das Prinzip Rubys,
+den Programmierer nicht durch Restriktionen und sprachlichen Eigenheiten bei seiner eigentlichen
+Arbeit zu behindern.
 
 Ruby und sein Framework Ruby on Rails werden quelloffen verwaltet und entwickelt. Neben den
 existierenden Programmbibliotheken existieren zusätzlich von der Community bereitgestellte Module,
@@ -111,14 +112,14 @@ weswegen entschieden wurde, die Rechteverteilung auf Datenbankebene zu realisier
 
 \subsection{Datenmodell}
 \label{sec:Datenmodell}
-Das Projekt verfügt grob über zwei Informationsträger, die in der Datenbank abgebildet werden
+Das Projekt verfügt über zwei Informationsträger, die in der Datenbank abgebildet werden
 sollen: einen \textit{User} und ein zugehöriges \textit{Tool}.
 
 TODO: insert ER-model
 
 Da für die Applikation zusätzliche Spezialisierungen, wie eine Administrator-Rolle und verschiedene
 externe Services, notwendig sind, wurden diese Beziehungen mit Hilfe der sogenannten
-\textit{Single Table Inheritance} (STI) realisiert.
+\textit{Single Table Inheritance} (\acs{STI}) realisiert.
 
 TODO: insert UML-Class-Model feat. STI
 
@@ -130,14 +131,14 @@ umsetzen.
 \label{sec:Schnittstellen}
 Die Hauptaufgabe der Applikation ist die Bereitstellung der gesammelten Informationen zu den
 Mitarbeitern und deren eingetragenen Informationen zu ihren genutzten Services. Dazu soll eine
-eigene API innerhalb der Applikation entwickelt werden, welche die Informationen im \textit{JSON}-
-Format ausgibt. Diese API kann nur authentifiziert angesprochen werden, d.h. der User muss eine
-Administratorrolle besitzen, um Zugriff zur Schnittstelle zu erhalten.
+eigene Schnittstelle innerhalb der Applikation entwickelt werden, welche die Informationen im
+\textit{JSON}-Format ausgibt. Diese Schnittstelle kann nur authentifiziert angesprochen werden,
+\dahe der User muss eine Administratorrolle besitzen, um Zugriff zu erhalten.
 
 \subsection{Paketierung}
 \label{sec:Paketierung}
 Gemäß der Richtline des Teams, in dem die Applikation entwickelt wurde, wird jene als \textit{RPM}
 paketiert. Dies ermöglicht eine einfache und sofort funktionsfähige Installation, da alle
 notwendigen Programmabhängigkeiten im Paket definiert und während des Installationsprozesses
-abgerufen und mitinstalliert werden. Dadurch ist beispielsweise auch bei Bedarf eine problemlose 
+abgerufen und mitinstalliert werden. Dadurch ist beispielsweise auch bei Bedarf eine problemlose
 Migration auf einen anderen Server möglich.
