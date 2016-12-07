@@ -2,7 +2,7 @@
 
 % Seitenränder -----------------------------------------------------------------
 \setlength{\topskip}{\ht\strutbox} % behebt Warnung von geometry
-\geometry{a4paper,left=20mm,right=20mm,top=25mm,bottom=35mm}
+\geometry{a4paper,left=20mm,right=20mm,top=25mm,bottom=45mm}
 
 \usepackage[
 	automark, % Kapitelangaben in Kopfzeile automatisch erstellen
@@ -18,7 +18,7 @@
 
 % Kopfzeile
 \renewcommand{\headfont}{\normalfont} % Schriftform der Kopfzeile
-\ihead{\large{\textsc{\titel}}\\ \small{\untertitel} \\[2ex] \textit{\headmark}}
+\ihead{\large{\textsc{\titel}}\\[2ex] \textit{\headmark}}
 \chead{}
 \ohead{\includegraphics[scale=0.15]{\betriebLogo}}
 \setlength{\headheight}{25mm} % Höhe der Kopfzeile
@@ -28,8 +28,6 @@
 \ifoot{\autorName}
 \cfoot{}
 \ofoot{\pagemark}
-\setlength{\footskip}{0mm}
-
 
 % Überschriften nach DIN 5008 in einer Fluchtlinie
 % ------------------------------------------------------------------------------
