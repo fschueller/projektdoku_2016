@@ -1,0 +1,129 @@
+% !TEX root = ../Projektdokumentation.tex
+\section{Implementierungsphase}
+\label{sec:Implementierungsphase}
+
+\subsection{Einleitung}
+\label{sec:Einleitung}
+Nach der Planungsphase wurde im direkten Anschluss die Implementierungsphase mit folgenden Schritten
+eingeleitet:
+\begin{enumerate}
+	\item Implementierung des Backends (Datenbank, Controllerlogik, Administratorbereich)
+	\item Implementierung der Benutzeroberfläche (Bootstrap, Tab-Layout)
+	\item Anbindung externer Schnittstellen (Github API (octokit), LDAP-Authentifizierung (devise))
+	\item Implementierung der internen Schnittstelle (rabl-gem)
+	\item Durchführung einer Testphase
+	\item Paketierung der Applikation (Schreiben des Specfiles, Patch)
+	\item Deployment auf Produktivmaschine (Konfigurieren des Apache-Webservers, vhost, SSL)
+\end{enumerate}
+
+\subsection{Implementierung des Backends}
+\label{sec:Implementierung des Backends}
+\begin{itemize}
+	\item Initiales Rails-Projekt
+	\item Einbindung von rspec als Testframework, Schreiben von Modeltests
+	\item Initalisierung der Development-Datenbank in SQLite3
+	\item Implementierung der Models
+	\item Implementierung von Validierungen zur Vermeidung von Falscheingaben (code example)
+	\item zugehörige Migrationen
+	\item Schreiben der Controllertests
+	\item Implementierung der Controllerlogik (code examples)
+	\item Implementierung Administratorbereich, Aufteilung des User-Models
+\end{itemize}
+
+\subsection{Implementierung der Benutzeroberfläche}
+\label{sec:Implementierung der Benutzeroberfläche}
+\begin{itemize}
+	\item Schreiben von Feature-Tests (capybara) (code example)
+	\item Einbindung von Bootstrap
+	\item Gestaltung des Layouts als Dashboard, Panel und Tabelemente (LH?) (screenshot)
+	\item Nutzung von Partials zur Verringerung der Response-Time
+	\item Admin-Tabs nur sichtbar und anzeigbar wenn als Admin authentifiziert (controller-restrained)
+\end{itemize}
+
+\subsection{Anbindung externer Schnittstellen}
+\label{sec:Anbindung externer Schnittstellen}
+\begin{itemize}
+	\item Everybody loves tests
+	\item LDAP-Konfiguration für Devise zur Mitarbeiterauthentifizierung
+	\item first login: Abfrage statischer Informationen wie Name, Firmenemail, Standort; Speichern in DB
+	\item bei jedem weiteren Login: dynamische Abfrage des Managers (auch bei Detailansicht in Admin-View)
+	\item dynamische Abfrage des Mitarbeiterstatus einmal wöchentlich
+	\item Team-view
+	\item vgl. entwickelte LDAP-Methode (code example)
+	\item Github/Octokit: Abfrage der Organisationszugehörigkeit und Anzeige von mailto an admins
+	\item Gleiche Methode für Trello auf Grund von Zeitmangel nicht mehr implementiert
+	\item Sidekiq/Sidetiq Jobs (code example)
+\end{itemize}
+
+\subsection{Interne Schnittstelle}
+\label{sec:Interne Schnittstelle}
+\begin{itemize}
+	\item Test it!
+	\item Formatierung des JSON-Outputs für etsync
+	\item Controller response to JSON
+	\item rabl-gem zur einfachen Formatierung von JSON mit einfachen Active Record-Queries
+	\item Da in Admin-Namespace nur ansprechbar bei Authentifizierung als Administrator
+\end{itemize}
+
+\subsection{Testphase}
+\label{sec:Testphase}
+\begin{itemize}
+	\item Gering gehalten, da TDD inkl. Feature-Tests
+	\item Rerun der Testsuite
+	\item Manueller Testrun mit Usern zum Test der GUI
+\end{itemize}
+
+\subsection{Paketierung}
+\label{sec:Paketierung}
+\begin{itemize}
+	\item rpm
+	\item specfile (excerpt of specfile)
+	\item Automatisierung der Paketierung bei neuem Commit in Repository, nach Run der Tests
+	\item Hält Paket auf neuestem Stand
+\end{itemize}
+
+\subsection{Deployment}
+\label{sec:Deployment}
+\begin{itemize}
+	\item Deployment in Kollaboration mit SUSE IT-Team, Bereitstellung der Produktivmaschine und
+	Produktivdatenbank
+	\item Konfigurieren eines Apache-Servers für vhosts
+	\item Manuelle Installation der Applikation auf Produktivmaschine
+\end{itemize}
+
+% \subsection{Implementierung der Datenstrukturen}
+% \label{sec:ImplementierungDatenstrukturen}
+%
+% \begin{itemize}
+% 	\item Beschreibung der angelegten Datenbank (\zB Generierung von \acs{SQL} aus Modellierungswerkzeug oder händisches Anlegen), \acs{XML}-Schemas \usw.
+% \end{itemize}
+%
+%
+% \subsection{Implementierung der Benutzeroberfläche}
+% \label{sec:ImplementierungBenutzeroberflaeche}
+%
+% \begin{itemize}
+% 	\item Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (\zB bei \acs{HTML}-Oberflächen und Stylesheets).
+% 	\item \Ggfs Beschreibung des Corporate Designs und dessen Umsetzung in der Anwendung.
+% 	\item Screenshots der Anwendung
+% \end{itemize}
+%
+% \paragraph{Beispiel}
+% Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im \Anhang{Screenshots}.
+%
+%
+% \subsection{Implementierung der Geschäftslogik}
+% \label{sec:ImplementierungGeschaeftslogik}
+%
+% \begin{itemize}
+% 	\item Beschreibung des Vorgehens bei der Umsetzung/Programmierung der entworfenen Anwendung.
+% 	\item \Ggfs interessante Funktionen/Algorithmen im Detail vorstellen, verwendete Entwurfsmuster zeigen.
+% 	\item Quelltextbeispiele zeigen.
+% 	\item Hinweis: Wie in Kapitel~\ref{sec:Einleitung}: \nameref{sec:Einleitung} zitiert, wird nicht ein lauffähiges Programm bewertet, sondern die Projektdurchführung. Dennoch würde ich immer Quelltextausschnitte zeigen, da sonst Zweifel an der tatsächlichen Leistung des Prüflings aufkommen können.
+% \end{itemize}
+%
+% \paragraph{Beispiel}
+% Die Klasse \texttt{Com\-par\-ed\-Na\-tu\-ral\-Mo\-dule\-In\-for\-ma\-tion} findet sich im \Anhang{app:CNMI}.
+%
+%
+% \Zwischenstand{Implementierungsphase}{Implementierung}
