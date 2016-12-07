@@ -18,17 +18,74 @@ eingeleitet:
 
 \subsection{Implementierung des Backends}
 \label{sec:Implementierung des Backends}
-\begin{itemize}
-	\item Initiales Rails-Projekt
-	\item Einbindung von rspec als Testframework, Schreiben von Modeltests
-	\item Initalisierung der Development-Datenbank in SQLite3
-	\item Implementierung der Models
-	\item Implementierung von Validierungen zur Vermeidung von Falscheingaben (code example)
-	\item zugehörige Migrationen
-	\item Schreiben der Controllertests
-	\item Implementierung der Controllerlogik (code examples)
-	\item Implementierung Administratorbereich, Aufteilung des User-Models
-\end{itemize}
+Die Entwicklung der Applikation begann mit der initialen Erstellung eines \acs{RoR}-Projektes.
+Nach Installation der zugehörigen Entwicklungsumgebung geschieht dies einfach mit Ausführung des
+Befehls \Code{rails new} in dem gewünschten Verzeichnis. Mit Hilfe dieses Befehls wird eine standardisierte
+Projektmappe erzeugt.
+
+Hier sei anzumerken dass RoR viele eingebaute Befehle mitbringt, welche die Ausführung von
+Entwicklungsschritten, wie \bspw das Anlegen von bestimmten Klassen, automatisiert. Ein manuelles
+Anlegen von relevanten Dateien im korrekten Verzeichnis entfällt dadurch und der Entwicklungsprozess
+kann massiv beschleunigt werden.
+
+Das \textit{Gemfile} bildet die zentrale Auflistung der von der Applikation genutzten Gems. Da die
+Entwicklung der Applikation im Sinne des \acs{TDD} (\Vgl \ref{sec:Entwicklungsprozess}) erfolgt, wurde hier zunächst die Testsuite
+\textit{rspec} hinzugefügt und die ersten Tests für die Models (\Vgl \ref{sec:Architekturdesign})
+geschrieben.
+
+\subsubsection{Erstellen der Models}
+\label{sec:Erstellen der Models}
+Erst nach Schreiben der Tests erfolgte die Erstellung der eigentlichen Modeldateien. samt jeweils
+zugehörigen Attributen. Zum Hinzufügen zur Datenbank wird der Befehl \Code{rake db:migrate} ausgeführt, welcher
+die Ruby-Syntax in \textit{\acs{SQL}} übersetzt.
+
+Um die Integrität der Datenbanktabellen zu erhalten und \ggfs Falscheingaben des Anwenders abzufangen,
+werden in den Models Validierungen implementiert. Diese werden bei jeder Datenbankoperation
+ausgeführt und verhindern bei Eingabe fehlerhafter Daten ein Abspeichern in der Datenbank.
+
+TODO: insert code example of user model validation/tool model validation
+
+Im Anschluss dessen wurde eine weitere \textit{Migration} ausgeführt, welche ein Typ-Attribut zu
+beiden Models hinzufügt. Dadurch wurde die in der Projektplanung niedergelegte Vererbungsstrategie
+der \acs{STI} realisiert (\Vgl \ref{sec:Datenmodell}).
+
+\subsubsection{Erstellen der Controller}
+\label{sec:Erstellen der Controller}
+Wie auch bei den Models erfolgt vor Erstellung der Controller das Schreiben von Tests, in denen die
+grundlegend erwarteten Verhaltensweisen der Controller getestet werden.
+
+Das Kernstück der Applikation bildet der \textit{Application Controller}. In diesem wurden
+verschiedene Strategien implementiert, welche den Betrieb der gesamten Applikation betreffen,
+\bspw das initiale Aufrufen der Nutzerauthentifizierung. Alle anderen Controller erben von diesem
+Application Controller und verfügen damit bei Aufruf über alle dort niedergelegten Methoden.
+
+Per Konvention wird für jedes Model mindestens ein Controller erstellt, jedoch benötigt nicht jeder
+Controller ein Model. In jedem Controller befinden sich sogenannte \textit{Actions}. Ruft der Nutzer \bspw die Webseite
+zum Hinzufügen eines neuen Alias für einen externen Service auf, wird seine Anfrage an die
+\Code{new}-Action des jeweiligen Controllers weitergeleitet (\Vgl \ref{sec:Architekturdesign}).
+
+Zunächst wird der \textit{ExternaltoolsController} erstellt. Alle relevanten Datenbankoperationen
+wie Anzeige, Hinzufügen und Löschen von Daten des Tool-Models werden von diesem Controller
+verarbeitet. Dazu fragt der Controller Informationen zu dem eingeloggten Nutzer aus der User-Tabelle
+ab, welches über das Objekt \Code{current user} realisiert wird. Dieses Objekt stammt aus dem
+eingesetzten Authentifizierungs-Gem \textit{Devise} (\Vgl \ref{sec:Anbindung externer Schnittstellen}).
+
+TODO: code example of externaltools controller
+
+Anschließend werden in einem Unterverzeichnis die Controller für den Administratorbereich der
+Applikation angelegt. Um diese vor einem unberechtigten Aufruf zu schützen, wird ein
+\textit{AdminController} erstellt, dessen einzige Methode prüft, ob ein Administrator eingeloggt ist.
+Ist dies nicht der Fall, erfolgt eine Weiterleitung zur Index-Seite.
+
+Da nur die Administratoren die Möglichkeit besitzen sollen, Nutzer aus der Datenbank zu entfernen,
+befindet sich der \textit{UsersController} in diesem Unterverzeichnis. Das Kernstück dieses
+Controllers ist die \Code{list user}-Action, welche die gesammelten Informationen zu allen
+Mitarbeitern aus der Datenbank abfragt und die API bereitstellt.
+
+TODO: code example of users controller
+
+In ähnlicher Weise wird der \textit{UnderlingsController} implementiert, welcher aber nur
+Informationen zu Teammitgliedern abfragt.
 
 \subsection{Implementierung der Benutzeroberfläche}
 \label{sec:Implementierung der Benutzeroberfläche}
