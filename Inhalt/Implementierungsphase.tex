@@ -20,8 +20,8 @@ eingeleitet:
 \label{sec:Implementierung des Backends}
 Die Entwicklung der Applikation begann mit der initialen Erstellung eines \acs{RoR}-Projektes.
 Nach Installation der zugehörigen Entwicklungsumgebung geschieht dies einfach mit Ausführung des
-Befehls \Code{rails new} in dem gewünschten Verzeichnis. Mit Hilfe dieses Befehls wird eine standardisierte
-Projektmappe erzeugt.
+Befehls \Code{rails new} in dem gewünschten Verzeichnis. Mit Hilfe dieses Befehls wird eine
+standardisierte Projektmappe erzeugt.
 
 Hier sei anzumerken dass RoR viele eingebaute Befehle mitbringt, welche die Ausführung von
 Entwicklungsschritten, wie \bspw das Anlegen von bestimmten Klassen, automatisiert. Ein manuelles
@@ -29,15 +29,17 @@ Anlegen von relevanten Dateien im korrekten Verzeichnis entfällt dadurch und de
 kann massiv beschleunigt werden.
 
 Das \textit{Gemfile} bildet die zentrale Auflistung der von der Applikation genutzten Gems. Da die
-Entwicklung der Applikation im Sinne des \acs{TDD} (\Vgl \ref{sec:Entwicklungsprozess}) erfolgt, wurde hier zunächst die Testsuite
-\textit{rspec} hinzugefügt und die ersten Tests für die Models (\Vgl \ref{sec:Architekturdesign})
-geschrieben.
+Entwicklung der Applikation im Sinne des \acs{TDD} (\Vgl \ref{sec:Entwicklungsprozess}) erfolgt,
+wurde hier zunächst die Testsuite \textit{rspec} hinzugefügt und die ersten Tests für die Models
+(\Vgl \ref{sec:Architekturdesign}) geschrieben.
 
 \subsubsection{Erstellen der Models}
 \label{sec:Erstellen der Models}
 Erst nach Schreiben der Tests erfolgte die Erstellung der eigentlichen Modeldateien. samt jeweils
-zugehörigen Attributen. Zum Hinzufügen zur Datenbank wird der Befehl \Code{rake db:migrate} ausgeführt, welcher
-die Ruby-Syntax in \textit{\acs{SQL}} übersetzt.
+zugehörigen Attributen. Dies geschieht mit Hilfe sogenannter \textit{Migrationen},
+Datenbankoperationen geschrieben in Ruby. Zum Hinzufügen der so definierten Tabellen und Attribute
+zur Datenbank wird der Befehl \Code{rake db:migrate} ausgeführt, welcher die Ruby-Syntax in
+\textit{\acs{SQL}} übersetzt.
 
 Um die Integrität der Datenbanktabellen zu erhalten und \ggfs Falscheingaben des Anwenders abzufangen,
 werden in den Models Validierungen implementiert. Diese werden bei jeder Datenbankoperation
@@ -51,20 +53,22 @@ der \acs{STI} realisiert (\Vgl \ref{sec:Datenmodell}).
 
 \subsubsection{Erstellen der Controller}
 \label{sec:Erstellen der Controller}
-Wie auch bei den Models erfolgt vor Erstellung der Controller das Schreiben von Tests, in denen die
-grundlegend erwarteten Verhaltensweisen der Controller getestet werden.
+Wie auch bei den Models erfolgt vor Erstellung der Controller und während der Implementierung
+das Schreiben von Tests, in denen die grundlegend erwarteten Verhaltensweisen der Controller
+getestet werden.
 
-Das Kernstück der Applikation bildet der \textit{Application Controller}. In diesem wurden
+Den Einstiegspunkt der Applikation bildet der \textit{Application Controller}. In diesem wurden
 verschiedene Strategien implementiert, welche den Betrieb der gesamten Applikation betreffen,
 \bspw das initiale Aufrufen der Nutzerauthentifizierung. Alle anderen Controller erben von diesem
 Application Controller und verfügen damit bei Aufruf über alle dort niedergelegten Methoden.
 
 Per Konvention wird für jedes Model mindestens ein Controller erstellt, jedoch benötigt nicht jeder
-Controller ein Model. In jedem Controller befinden sich sogenannte \textit{Actions}. Ruft der Nutzer \bspw die Webseite
-zum Hinzufügen eines neuen Alias für einen externen Service auf, wird seine Anfrage an die
-\Code{new}-Action des jeweiligen Controllers weitergeleitet (\Vgl \ref{sec:Architekturdesign}).
+Controller ein Model. In jedem Controller befinden sich sogenannte \textit{Actions}. Ruft der Nutzer
+\bspw die Webseite zum Hinzufügen eines neuen Alias für einen externen Service auf, wird seine
+Anfrage an die \Code{new}-Action des jeweiligen Controllers weitergeleitet
+(\Vgl \ref{sec:Architekturdesign}).
 
-Zunächst wird der \textit{ExternaltoolsController} erstellt. Alle relevanten Datenbankoperationen
+Zunächst wird der \textit{ExternaltoolsController} erstellt. Alle relevanten Operationen
 wie Anzeige, Hinzufügen und Löschen von Daten des Tool-Models werden von diesem Controller
 verarbeitet. Dazu fragt der Controller Informationen zu dem eingeloggten Nutzer aus der User-Tabelle
 ab, welches über das Objekt \Code{current user} realisiert wird. Dieses Objekt stammt aus dem
@@ -78,9 +82,9 @@ Applikation angelegt. Um diese vor einem unberechtigten Aufruf zu schützen, wir
 Ist dies nicht der Fall, erfolgt eine Weiterleitung zur Index-Seite.
 
 Da nur die Administratoren die Möglichkeit besitzen sollen, Nutzer aus der Datenbank zu entfernen,
-befindet sich der \textit{UsersController} in diesem Unterverzeichnis. Das Kernstück dieses
-Controllers ist die \Code{list user}-Action, welche die gesammelten Informationen zu allen
-Mitarbeitern aus der Datenbank abfragt und die API bereitstellt.
+befindet sich der \textit{UsersController} in diesem Unterverzeichnis. Als Kernstück dieses
+Controllers wird die \Code{list user}-Action implementiert, welche die gesammelten Informationen
+zu allen Mitarbeitern aus der Datenbank abfragt und die API bereitstellt.
 
 TODO: code example of users controller
 
@@ -89,98 +93,116 @@ Informationen zu Teammitgliedern abfragt.
 
 \subsection{Implementierung der Benutzeroberfläche}
 \label{sec:Implementierung der Benutzeroberfläche}
-\begin{itemize}
-	\item Schreiben von Feature-Tests (capybara) (code example)
-	\item Einbindung von Bootstrap
-	\item Gestaltung des Layouts als Dashboard, Panel und Tabelemente (LH?) (screenshot)
-	\item Nutzung von Partials zur Verringerung der Response-Time
-	\item Admin-Tabs nur sichtbar und anzeigbar wenn als Admin authentifiziert (controller-restrained)
-\end{itemize}
+Nach der Fertigstellung des grundlegenden Backends erfolgt die Programmierung der Benutzeroberfläche.
+Auch für diese werden Tests geschrieben, sogenannte \textit{Feature Tests}.
+
+TODO: code example of feature test
+
+Wie in der Planung (\Vgl \ref{sec:Benutzeroberfläche}) niedergelegt, wird für die Implementierung
+das Framework Twitter Bootstrap verwendet. Die Einbindung in das Projekt erfolgt als \textit{Gem}.
+
+Die gewünschte Darstellung als \textit{Dashboard} mit Paneel-Elementen lässt sich zeitsparend mit
+den in Bootstrap vorhandenen Vorlagen erstellen. Die Farbgebung der Elemente wird gemäß der
+Firmenrichtlinien gestaltet.
+
+TODO: Screenshot basic externaltools view
+
+Als spezielle Strategie zur Verbesserung der Performanz der Applikation werden sogenannte
+\textit{Partials} eingesetzt. Bei dieser Vorgehensweise werden bei Webseiten bei Bedarf nur die
+sich verändernden Elemente neu geladen, statt die komplette Seite neu abzurufen.
+Dies verringert die benötigte Antwortzeit des Webservers maßgeblich.
+
+TODO: Screenshot externaltools new action view
+
+Für Zugang zu den Administratoransichten wird die reguläre Mitarbeiteransicht um weitere Tab-Elemente
+erweitert. Diese sind nur bei Login als Administrator sichtbar.
+
+TODO: Screenshot admin view
 
 \subsection{Anbindung externer Schnittstellen}
 \label{sec:Anbindung externer Schnittstellen}
-\begin{itemize}
-	\item Everybody loves tests
-	\item LDAP-Konfiguration für Devise zur Mitarbeiterauthentifizierung
-	\item first login: Abfrage statischer Informationen wie Name, Firmenemail, Standort; Speichern in DB
-	\item bei jedem weiteren Login: dynamische Abfrage des Managers (auch bei Detailansicht in Admin-View)
-	\item dynamische Abfrage des Mitarbeiterstatus einmal wöchentlich
-	\item Team-view
-	\item vgl. entwickelte LDAP-Methode (code example)
-	\item Github/Octokit: Abfrage der Organisationszugehörigkeit und Anzeige von mailto an admins
-	\item Gleiche Methode für Trello auf Grund von Zeitmangel nicht mehr implementiert
-	\item Sidekiq/Sidetiq Jobs (code example)
-\end{itemize}
+Wie bei jedem Entwicklungsschritt beginnt die Anbindung von externen Schnittstellen mit dem Schreiben
+von Tests.
+
+Als Authentifizierungsmethode wird eine Authentifizierung über \textit{\acs{LDAP}} gewählt. Darüber
+kann das firmeneigene eDirectory zum Abgleich genutzt und gleichzeitig Informationen über
+den Mitarbeiter abgerufen werden.
+
+Das Gem \textit{Devise} bietet eine umfassende Sammlung an Konfigurationsmöglichkeiten und wird
+daher als Lösung eingesetzt. Beim erstmaligen Einloggen eines Mitarbeiters werden gleichzeitig
+dessen Name, Mitarbeiterkürzel und Informationen zu seinem Standort sowie der internen
+e-Mail-Adresse in der Datenbank abgespeichert. Informationen zu seinem Vorgesetzten werden einzeln
+dynamisch bei Bedarf abgefragt und angezeigt, da sich dieses Attribut öfter ändern kann.
+
+Ebenso soll der Mitarbeiterstatus möglichst aktuell als Information verfügbar sein. Da diese
+Information allein in der Administratoransicht \bzw bei Ansprechen der Schnittstelle abgefragt wird,
+würde eine gesammelte Abfrage des Status für mehrere hundert Mitarbeiter gleichzeitig den Webserver
+überlasten. Aus diesem Grund wird ein Hintergrundprozess implementiert. RoR bietet dafür den
+sogenannten \textit{Active Job}-Mechanismus an. Dort wird ein Prozess als Klasse implementiert,
+welcher einmal pro Woche für alle eingetragenen Mitarbeiter einzeln den Mitarbeiterstatus anfragt
+und als \textit{boolean flag} in der Datenbank aktualisiert.
+
+TODO: code example employee status job
+
+Als Kernstück wird die Klasse \Code{LDAPSearch} implementiert, welche für alle zusätzlichen
+LDAP-Abfragen außerhalb des User-Models verwendet wird.
+
+TODO: code example ldap search.rb
+
+Gewünscht war ebenfalls die Möglichkeit, dass Mitarbeiter \ggfs in Eigeninitiative eine
+Beitrittsanfrage an die Administratoren der Organisationen stellen können. Zu diesem Zweck wird der
+Status der Organisationszugehörigkeit ebenfalls durch einen ActiveJob bei der API von Github
+angefragt, welcher beim Hinzufügen eines Github-Nutzernamens ausgelöst wird.
+Bei nicht vorhandener Zugehörigkeit wird ein Link bereitgestellt, welcher eine fertige e-Mail-Vorlage
+an die Administratoren generiert.
+
+Aus Zeitmangel konnte eine ähnliche Strategie für den externen Service Trello während des
+Projektverlaufs nicht mehr implementiert werden. Da dies aber nicht als kritisch bewertet wurde,
+behinderte dies nicht den Abschluss des Projektes.
 
 \subsection{Interne Schnittstelle}
 \label{sec:Interne Schnittstelle}
-\begin{itemize}
-	\item Test it!
-	\item Formatierung des JSON-Outputs für etsync
-	\item Controller response to JSON
-	\item rabl-gem zur einfachen Formatierung von JSON mit einfachen Active Record-Queries
-	\item Da in Admin-Namespace nur ansprechbar bei Authentifizierung als Administrator
-\end{itemize}
+Die Progammierung der Schnittstelle begann zunächst mit der Analyse des Kommandozeilenwerkzeugs
+\textit{etsync}, für welches die Schnittstelle entwickelt werden soll. Anhand des Codes in etsync
+wird die Ausgabe der Schnittstelle modelliert. Realisiert wird die Ausgabe in \textit{\acs{JSON}},
+was ein gebräuchliches Datenformat zum Austausch von Informationen zwischen Anwendungen ist.
+
+Um die gewünschten Informationen korrekt und einfach zu modellieren, wird das Gem \textit{rabl}
+eingesetzt. Mit diesem Gem kann die JSON-Notation einfach als Active Record-Anfragen in Ruby
+geschrieben werden und vermeidet so Fehler bei der sonst manuellen Erstellung einer JSON-Vorlage,
+welche viele Klammern und Satzzeichen verwendet. Auch können spätere Anpassungen so leichter
+durchgeführt werden und eine genaue Kenntnis der JSON-Syntax ist überflüssig.
+
+Die zugehörige Controller-Action befindet sich im Administratorverzeichnis, weshalb sie nur von
+Administratoren authentifiziert angesprochen werden kann (\Vgl \ref{sec:Erstellen der Controller}).
 
 \subsection{Testphase}
 \label{sec:Testphase}
-\begin{itemize}
-	\item Gering gehalten, da TDD inkl. Feature-Tests
-	\item Rerun der Testsuite
-	\item Manueller Testrun mit Usern zum Test der GUI
-\end{itemize}
+Nach Implementierung des Projektes konnte eine finale Testphase zeitlich gering gehalten werden,
+da die Applikation während der Entwicklung bereits durch das Prinzip des \acs{TDD} laufend
+getestet und Fehler behoben wurden. Es wurden neben einem abschließenden kompletten Durchlauf der
+Testsammlung \textit{Usability-Tests} der Nutzeroberfläche mit Probanden und realen Mitarbeiterdaten
+durchgeführt.
 
-\subsection{Paketierung}
-\label{sec:Paketierung}
-\begin{itemize}
-	\item rpm
-	\item specfile (excerpt of specfile)
-	\item Automatisierung der Paketierung bei neuem Commit in Repository, nach Run der Tests
-	\item Hält Paket auf neuestem Stand
-\end{itemize}
+\subsection{Paketierung der Applikation}
+\label{sec:Paketierung der Applikation}
+Wie bereits in \ref{sec:Paketierung} dargelegt erfolgt nach Entwicklung und finaler Testphase der
+Applikation die Paketierung als RPM. Die Kontrollstruktur eines RPM-Pakets ist das sogenannte
+\textit{Specfile}. In diesem werden alle relevanten Informationen zu dem Softwarepaket,
+wie \bspw Versionsnummer oder Abhängigkeiten auf andere Pakete, niedergelegt.
+
+TODO: excerpt of specfile
+
+Um das Paket immer auf dem neuesten Stand zu halten, wird über ein Skript bei einer
+Codeaktualisierung des Projekts auf der firmeneigenen Versionsverwaltungsplattform automatisch die
+Ausführung der Testsammlung ausgelöst. Sind diese erfolgreich mit den neuesten Änderungen ausgeführt
+worden, wird die Paketierung automatisiert angestoßen. Dies verhindert zusätzlich, dass fehlerhafte
+oder ungetestete Funktionalität in das endgültige Paket gelangt.
 
 \subsection{Deployment}
 \label{sec:Deployment}
-\begin{itemize}
-	\item Deployment in Kollaboration mit SUSE IT-Team, Bereitstellung der Produktivmaschine und
-	Produktivdatenbank
-	\item Konfigurieren eines Apache-Servers für vhosts
-	\item Manuelle Installation der Applikation auf Produktivmaschine
-\end{itemize}
-
-% \subsection{Implementierung der Datenstrukturen}
-% \label{sec:ImplementierungDatenstrukturen}
-%
-% \begin{itemize}
-% 	\item Beschreibung der angelegten Datenbank (\zB Generierung von \acs{SQL} aus Modellierungswerkzeug oder händisches Anlegen), \acs{XML}-Schemas \usw.
-% \end{itemize}
-%
-%
-% \subsection{Implementierung der Benutzeroberfläche}
-% \label{sec:ImplementierungBenutzeroberflaeche}
-%
-% \begin{itemize}
-% 	\item Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (\zB bei \acs{HTML}-Oberflächen und Stylesheets).
-% 	\item \Ggfs Beschreibung des Corporate Designs und dessen Umsetzung in der Anwendung.
-% 	\item Screenshots der Anwendung
-% \end{itemize}
-%
-% \paragraph{Beispiel}
-% Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im \Anhang{Screenshots}.
-%
-%
-% \subsection{Implementierung der Geschäftslogik}
-% \label{sec:ImplementierungGeschaeftslogik}
-%
-% \begin{itemize}
-% 	\item Beschreibung des Vorgehens bei der Umsetzung/Programmierung der entworfenen Anwendung.
-% 	\item \Ggfs interessante Funktionen/Algorithmen im Detail vorstellen, verwendete Entwurfsmuster zeigen.
-% 	\item Quelltextbeispiele zeigen.
-% 	\item Hinweis: Wie in Kapitel~\ref{sec:Einleitung}: \nameref{sec:Einleitung} zitiert, wird nicht ein lauffähiges Programm bewertet, sondern die Projektdurchführung. Dennoch würde ich immer Quelltextausschnitte zeigen, da sonst Zweifel an der tatsächlichen Leistung des Prüflings aufkommen können.
-% \end{itemize}
-%
-% \paragraph{Beispiel}
-% Die Klasse \texttt{Com\-par\-ed\-Na\-tu\-ral\-Mo\-dule\-In\-for\-ma\-tion} findet sich im \Anhang{app:CNMI}.
-%
-%
-% \Zwischenstand{Implementierungsphase}{Implementierung}
+Die Bereitstellung der Applikation geschieht in Kollaboration mit dem Team, in welchem das
+Projekt durchgeführt wurde. Auf einer dedizierten Produktivmaschine, die bereits als Webserver für
+andere Applikationen fungiert, wird eine weitere Konfiguration angelegt und das Software-Paket der
+Applikation installiert. Nach Neustart der zugehörigen Services und Prozesse ist die
+Webapplikation intern über den Browser zu erreichen.
