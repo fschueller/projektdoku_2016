@@ -27,6 +27,16 @@
 \newcommand{\Autor}[1]{\textsc{#1}} % zum Ausgeben von Autoren
 \newcommand{\itemd}[2]{\item{\textbf{#1}}\\{#2}} % erzeugt ein Listenelement mit fetter Überschrift
 
+% füge Abbildungen mit Caption ein
+\newcommand{\abb}[4]
+{\begin{figure}[htb]
+\centering
+\singlespacing
+\includegraphicsKeepAspectRatio{Bilder/#3}{#4}
+\caption{#1}
+\label{#2}
+\end{figure}}
+
 % fügt Tabellen aus einer TEX-Datei ein
 \newcommand{\tabelle}[3] % Parameter: caption, label, file
 {\begin{table}[htbp]
@@ -58,7 +68,7 @@
 \includegraphics[{#1}]{#2}}%
 }
 
-\definecolor{AOBlau}{rgb}{0, 0.28, 0.56}
+\definecolor{AOBlau}{rgb}{0, 0, 0}
 
 % verschiedene Befehle um Wörter semantisch auszuzeichnen ----------------------
 \newcommand{\Index}[2][\empty]{\ifthenelse{\equal{#1}{\empty}}{\index{#2}#2}{\index{#1}#2}}
