@@ -34,8 +34,8 @@ gewünschten Ergebnis führt.
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
 Zur Umsetzung der geforderten Modularität der Applikation bietet sich das sogenannte
-\textit{Model-View-Controller-Schema} (\acs{MVC}) an. Dieses ist ein gängiges Schema beim Aufbau von Webapplikationen und
-besteht aus drei Teilen:
+\textit{Model-View-Controller-Schema} (\acs{MVC}) an. Dieses ist ein gängiges Schema beim Aufbau von
+Webapplikationen und besteht aus drei Teilen:
 \begin{itemize}
 	\item das \textit{Model}, welches grob die einzelnen Tabellen einer Datenbank repräsentiert. Es enthält in
 	der Regel zusätzliche Logik und Regeln, die zur Verwaltung und Zusammensetzung von Attributen
@@ -51,7 +51,7 @@ Diese Aufteilung ermöglicht ein strukturierte und übersichtliche Entwicklung, 
 Datenbankoperationen und Ausgabelogik klar getrennt und jeweils namentlich zugehörig gekennzeichnet
 sind.
 
-TODO: enter figure of MVC schematics
+\abb{MVC-Schema}{fig:MVC-Schema}{MVC-Model.pdf}{0.5}
 
 \subsubsection{Wahl der Programmiersprache}
 \label{sec:Wahl der Programmiersprache}
@@ -98,13 +98,13 @@ weswegen entschieden wurde, die Rechteverteilung auf Datenbankebene zu realisier
 Das Projekt verfügt über zwei Informationsträger, die in der Datenbank abgebildet werden
 sollen: einen \textit{User} und ein zugehöriges \textit{Tool}.
 
-TODO: insert ER-model
+\abb{Entity-Relationship-Modell}{fig:ER-Modell}{ER-Diagramm.pdf}{0.4}
 
 Da für die Applikation zusätzliche Spezialisierungen, wie eine Administrator-Rolle und verschiedene
 externe Services, notwendig sind, wurden diese Beziehungen mit Hilfe der sogenannten
 \textit{Single Table Inheritance} (\acs{STI}) realisiert.
 
-TODO: insert UML-Class-Model feat. STI
+\abb{Beispielhafte Darstellung der STI}{fig:STI-Beispiel}{STI-Figure.pdf}{0.5}
 
 Diese spezielle Vererbungsstrategie lässt sich mit Hilfe der in Rails eingebauten
 \textit{Active Record}-Engine durch das einfache Hinzufügen eines Typ-Attributs an das Model
@@ -120,7 +120,7 @@ eigene Schnittstelle innerhalb der Applikation entwickelt werden, welche die Inf
 
 \subsection{Paketierung}
 \label{sec:Paketierung}
-Gemäß der Richtline des Teams, in dem die Applikation entwickelt wurde, wird jene als \textit{RPM}
+Gemäß der Richtline des Teams, in dem die Applikation entwickelt wurde, wird jene als \textit{\acs{RPM}}
 paketiert. Dies ermöglicht eine einfache und sofort funktionsfähige Installation, da alle
 notwendigen Programmabhängigkeiten im Paket definiert und während des Installationsprozesses
 abgerufen und mitinstalliert werden. Dadurch ist beispielsweise auch bei Bedarf eine problemlose
