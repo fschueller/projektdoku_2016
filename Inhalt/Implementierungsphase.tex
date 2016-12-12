@@ -7,13 +7,13 @@
 Nach der Planungsphase wurde im direkten Anschluss die Implementierungsphase mit folgenden Schritten
 eingeleitet:
 \begin{enumerate}
-	\item Implementierung des Backends (Datenbank, Controllerlogik, Administratorbereich)
-	\item Implementierung der Benutzeroberfläche (Bootstrap, Tab-Layout)
-	\item Anbindung externer Schnittstellen (Github API (octokit), LDAP-Authentifizierung (devise))
-	\item Implementierung der internen Schnittstelle (rabl-gem)
+	\item Implementierung des Backends
+	\item Implementierung der Benutzeroberfläche
+	\item Anbindung externer Schnittstellen
+	\item Implementierung der internen Schnittstelle
 	\item Durchführung einer Testphase
-	\item Paketierung der Applikation (Schreiben des Specfiles, Patch)
-	\item Deployment auf Produktivmaschine (Konfigurieren des Apache-Webservers, vhost, SSL)
+	\item Paketierung der Applikation
+	\item Deployment auf Produktivmaschine
 \end{enumerate}
 
 \subsection{Implementierung des Backends}
@@ -190,8 +190,6 @@ Wie bereits in \ref{sec:Paketierung} dargelegt erfolgt nach Entwicklung und fina
 Applikation die Paketierung als RPM. Die Kontrollstruktur eines RPM-Pakets ist das sogenannte
 \textit{Specfile}. In diesem werden alle relevanten Informationen zu dem Softwarepaket,
 wie \bspw Versionsnummer oder Abhängigkeiten auf andere Pakete, niedergelegt.
-
-TODO: excerpt of specfile
 
 Um das Paket immer auf dem neuesten Stand zu halten, wird über ein Skript bei einer
 Codeaktualisierung des Projekts auf der firmeneigenen Versionsverwaltungsplattform automatisch die
