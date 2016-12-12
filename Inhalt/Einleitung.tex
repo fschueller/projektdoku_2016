@@ -64,27 +64,28 @@ Konzept sehr fehleranfällig und ineffizient durchzuführen.
 
 \subsection{Soll-Konzept}
 \label{sec:Soll-Konzept}
-Um Personal zu entlasten und den Prozess wesentlich zu vereinfachen, soll eine
-zentrale Plattform geschaffen werden, die eine gesammelte Zuordnung der Mitarbeiter zu ihren
-externen Nutzerkonten zum Abgleich bereitstellt. Die Datensätze sollen von den jeweiligen
-Mitarbeitern selbst verwaltet und gepflegt werden. Dadurch bleibt alleine der Abgleich mit den
+Wie in \ref{sec:Ist-Analyse} aufgezeigt benötigt der bisherige Prozess viel Zeit und ist kompliziert
+durchzuführen. Ziel ist die Vereinfachung des Prozesses und die Entlastung des Personals.
+Die Lösung dafür stellt eine gesammelte Zuordnung der internen Mitarbeiterdaten zu ihren jeweiligen
+extern Nutzerkonten dar, über welche der Abgleich leichter gestaltet werden kann.
+
+Zur Abfrage der mitarbeiterspezifischen Informationen, wie Name, Standort oder Vorgesetzter, kann
+das firmeneigene eDirectory genutzt werden.
+
+Die Personalbelastung kann minimiert werden, in dem die Mitarbeiter selbst die jeweils benötigten
+Informationen eintragen und verwalten. Dadurch bleibt alleine der Abgleich mit den
 Nutzerlisten der bei den externen Services angelegten Organisationen und ein eventuelles Hinzufügen
 oder Entfernen des Mitarbeiters aus der Organisation übrig.
 
-Die Plattform soll als Webapplikation gestaltet werden, was eine plattformunabhängige Nutzung
-ermöglicht. Zusätzlich soll die Implementierung modular und leicht erweiterbar
-sein, um zukünftig geplante Funktionen einfach hinzufügen und warten zu können. Ebenso soll die
-Applikation über Tests verfügen, welche jene für andere Entwickler in Zukunft nachvollziehbar macht.
+Um dem Mitarbeiter Möglichkeit zur Eigeninitiative einzuräumen, können die Schnittstellen der
+genannten externen Tools Github und Trello genutzt werden, um bei Hinzufügen der Nutzerinformation
+die Organisationszugehörigkeit abzufragen. Durch eine Abfrage im Hintergrund und Anzeige eines
+passenden Hinweises kann der jeweilige Mitarbeiter den Administratoren selbst eine Anfrage schicken.
 
-\subsection{Projektschnittstellen}
-\label{sec:Projektschnittstellen}
-Die Applikation nutzt mehrere APIs um z.B. die Betriebszugehörigkeit oder verschiedene Informationen
-aus den Datenbanken der externen Services abzufragen.
-
-Mitarbeiterspezifische Informationen, wie Name, Standort oder Vorgesetzter, werden aus dem
-firmeneigenen eDirectory abgefragt.
-Zur Abfrage der Organisationszugehörigkeit werden die externen Schnittstellen der genannten Tools
-Github und Trello verwendet.
+Um Erreichbarkeit und einfache Bedienbarkeit zu gewährleisten, bietet sich die Umsetzung als
+Webapplikation an. Um diese leicht wartbar und für zukünftige Funktionen erweiterbar zu halten, soll
+ein modulares Framework genutzt werden. Die Entwicklung einer zugehörigen Testsammlung ermöglicht
+die spätere Nachvollziehbarkeit der Entwicklungsschritte.
 
 Die Schnittstelle der Applikation, welche die gesammelten Informationen über den Mitarbeiter
 bereitstellt, wird in dem Administrationstool etsync konsumiert, welches für die Administratoren
