@@ -11,10 +11,9 @@ ebenso wie der Hauptteil der Softwareentwicklung.
 
 Das Kerngeschäft der SUSE Linux GmbH umfasst die Entwicklung einer Linux-basierten Distribution.
 Für Privatkunden werden hierzu die Distributionen der openSUSE-Familie, die größtenteils von der
-Community entwickelt werden, bereitgestellt, für Geschäftskunden die Produkte der SUSE Linux
-Enterprise-Familie.
+Community entwickelt werden, bereitgestellt. Für Geschäftskunden werden die Produkte der SUSE Linux
+Enterprise-Familie gepflegt. Die Softwareentwicklung erfolgt nach dem Open-Source-Prinzip.
 
-Die Entwicklung erfolgt nach dem Open-Source-Prinzip.
 Durchgeführt wurde das Projekt im Team SUSE-IT, die neben der Infrastruktur auch die
 Entwicklungsumgebung, die sogenannten Engineering Services, bereitstellen.
 
@@ -35,22 +34,23 @@ damit Latenzen bei Änderungen der Accountinformationen minimiert und administra
 entlastet wird. Um dies möglichst plattformunabhängig zu gestalten, erfolgt die Realisierung als
 Webapplikation.
 
-Da externe Services eine Zulassung durch den Betriebsrat und die IT-Sicherheit benötigen, beschränkt
-sich die erste Version dieser Applikation darauf, die Accountinformationen der Applikationen Github
-(verzeichnisorganisierte Versionsverwaltung von Quellcode) und Trello (Tool zur Steuerung von
-agilen Software-Projekten) einzubinden. Diese erhielten bereits im Vorfeld dieser Arbeit eine
-Zulassung.
+Da externe Services eine Zulassung durch den Betriebsrat und IT-Sicherheit und den Datenschutzbeauftragten
+benötigen, beschränkt sich die erste Version dieser Applikation darauf, die Accountinformationen der
+Applikationen Github (verzeichnisorganisierte Versionsverwaltung von Quellcode) und Trello
+(Tool zur Steuerung von agilen Software-Projekten) einzubinden. Diese erhielten bereits im Vorfeld
+dieser Arbeit eine Zulassung.
 
 \subsection{Ist-Analyse}
 \label{sec:Ist-Analyse}
-Bei den verwendeten externen Services Github und Trello können Unternehmen zur Abgrenzung und
-Verwaltung ihrer firmeninternen Ressourcen und Informationen Organisationen anlegen, zu
-denen Accounts von Mitarbeitern hinzugefügt werden und ihnen besondere Zugriffsrechte einzuräumen.
-So haben beispielsweise nur Mitarbeiter Schreibrechte auf den Quellcodeverzeichnissen bei Github und
-Mitglieder der Open-Source-Community sowie Partner können in der Regel nur Vorschläge, sogenannte
-Pull Requests, bei dem jeweiligen Projekt einreichen.
+Bei den genannten externen Services können Unternehmen zur Abgrenzung und
+Verwaltung ihrer firmeninternen Entwicklungsprojekte Gruppierungen als sogenannte Organisationen anlegen.
+Die externen Accounts von Mitarbeitern können in diese Organisationen aufgenommen werden,
+um ihnen damit erweiterte Zugriffsrechte einzuräumen.
+So haben beispielsweise nur interne Mitarbeiter Schreibrechte auf den Quellcodeverzeichnissen, während
+Mitglieder der Open-Source-Community sowie Partner nur Vorschläge, sogenannte
+\textit{Pull Requests}, bei dem jeweiligen Projekt einreichen können.
 
-Der Abgleich der internen Mitarbeiter- mit den Userlisten innerhalb der angelegten Firmenorganisationen
+Der Abgleich der internen Mitarbeiter- mit den Userlisten innerhalb der angelegten Organisationen
 erfolgt bisher manuell. Dies bedeutet, dass beispielsweise für jeden neuen
 Mitarbeiter persönlich oder schriftlich angefragt werden muss welches User-Alias er bei den
 jeweiligen Services führt, um dessen Account dann zur Organisation hinzuzufügen und ihm
@@ -59,23 +59,21 @@ der Firma, wenn es gegebenenfalls auf Grund fehlender Kontaktmöglichkeit sehr m
 nachzuvollziehen.
 
 Bei Organisationen mit mehreren hundert Mitgliedern entsteht dadurch ein großer zeitlicher und
-personeller Aufwand. Durch die ungenaue Beschaffung der benötigten Informationen ist das bisherige
+personeller Aufwand. Durch die dezentrale Beschaffung der benötigten Informationen ist das bisherige
 Konzept sehr fehleranfällig und ineffizient durchzuführen.
 
 \subsection{Soll-Konzept}
 \label{sec:Soll-Konzept}
-Wie in \ref{sec:Ist-Analyse} aufgezeigt benötigt der bisherige Prozess viel Zeit und ist kompliziert
-durchzuführen. Ziel ist die Vereinfachung des Prozesses und die Entlastung des Personals.
-Die Lösung dafür stellt eine gesammelte Zuordnung der internen Mitarbeiterdaten zu ihren jeweiligen
-extern Nutzerkonten dar, über welche der Abgleich leichter gestaltet werden kann.
+Wie in der Ist-Analyse aufgezeigt benötigt der bisherige Prozess viel Zeit und ist kompliziert
+durchzuführen. Ziel ist die Vereinfachung des Prozesses und die Entlastung des administrativen Personals.
+Die Lösung dafür stellt eine personenbezogene Zuordnung der internen Mitarbeiterdaten zu den jeweiligen
+externen Nutzerkonten dar. Gleichzeitig soll durch Anbieten als \textit{Self-Service} eine weitere
+Entlastung vorgenommen werden. Hierbei werden Änderungen und Verwaltung der Accountinformationen durch den Mitarbeiter
+durchgeführt. Lediglich das Hinzufügen zu oder Entfernen aus den entsprechenden Organisationen obliegt weiterhin den
+Administratoren.
 
 Zur Abfrage der mitarbeiterspezifischen Informationen, wie Name, Standort oder Vorgesetzter, kann
-das firmeneigene eDirectory genutzt werden.
-
-Die Personalbelastung kann minimiert werden, in dem die Mitarbeiter selbst die jeweils benötigten
-Informationen eintragen und verwalten. Dadurch bleibt alleine der Abgleich mit den
-Nutzerlisten der bei den externen Services angelegten Organisationen und ein eventuelles Hinzufügen
-oder Entfernen des Mitarbeiters aus der Organisation übrig.
+das firmeneigene \textit{eDirectory} genutzt werden.
 
 Um dem Mitarbeiter Möglichkeit zur Eigeninitiative einzuräumen, können die Schnittstellen der
 genannten externen Tools Github und Trello genutzt werden, um bei Hinzufügen der Nutzerinformation
@@ -84,9 +82,25 @@ passenden Hinweises kann der jeweilige Mitarbeiter den Administratoren selbst ei
 
 Um Erreichbarkeit und einfache Bedienbarkeit zu gewährleisten, bietet sich die Umsetzung als
 Webapplikation an. Um diese leicht wartbar und für zukünftige Funktionen erweiterbar zu halten, soll
-ein modulares Framework genutzt werden. Die Entwicklung einer zugehörigen Testsammlung ermöglicht
-die spätere Nachvollziehbarkeit der Entwicklungsschritte.
+ein modulares Framework genutzt werden.
+
+Die Applikation soll so entwickelt werden, dass sie zukünftig anpassbar und erweiterbar ist. Dies
+stellt die zusätzliche Anforderung an den Quellcode, dass dieser in einer entsprechenden nachvollziehbaren
+Form geschrieben wird.
 
 Die Schnittstelle der Applikation, welche die gesammelten Informationen über den Mitarbeiter
-bereitstellt, wird in dem Administrationstool etsync konsumiert, welches für die Administratoren
-der externen Organisationen bei Github und Trello entwickelt wurde.
+bereitstellt, wird in dem Administrationstool "etsync" konsumiert, welches für die Administration
+externen Tools entwickelt wurde.
+
+\subsection{Projektverantwortlicher}
+\label{sec:Projektverantwortlicher}
+Durchgeführt wird das Projekt innerhalb der SUSE Linux GmbH im Team SUSE-IT, Engineering Services
+Department. Ansprechpartner für das Projekt ist Cornelius Schumacher.
+
+\subsection{Anmerkung zur Dokumentation}
+\label{sec:Anmerkung zur Dokumentation}
+Einschlägige Fachbegriffe der IT werden ohne Ausschrift im Text verwendet. Zu fachspezifische
+Begriffe werden kursiv abgebildet und sind im Glossar erläutert. Eigen- und Modulnamen werden in " "
+geschrieben. Begriffe, in diesem Fall besonders aus dem Bereich der verwendeten Programmiersprache,
+werden in ihrer englischen Urform gelassen.
+\pagebreak
