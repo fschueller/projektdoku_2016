@@ -36,8 +36,8 @@ des jeweiligen Algorithmus erfolgt, welcher zu dem gewünschten Ergebnis führt.
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
-Zur Umsetzung der geforderten Modularität der Applikation bietet sich das sogenannte
-\textit{Model-View-Controller-Schema} (\acs{MVC}) an. Dieses ist ein gängiges Schema beim Aufbau von
+Zur Umsetzung der geforderten Modularität der Applikation wurde das sogenannte
+\textit{Model-View-Controller-Schema} (\acs{MVC}) verwendet. Dieses ist ein gängiges Schema beim Aufbau von
 Webapplikationen und besteht aus drei Teilen:
 \begin{itemize}
 	\item das \textit{Model}, welches grob die einzelnen Tabellen einer Datenbank repräsentiert. Es enthält in
@@ -56,24 +56,19 @@ sind.
 
 \abb{MVC-Schema}{fig:MVC-Schema}{MVC-Model.pdf}{0.5}
 
-\subsubsection{Wahl der Programmiersprache}
+\subsection{Wahl der Programmiersprache}
 \label{sec:Wahl der Programmiersprache}
-Als Programmiersprache wurden \textit{Ruby} und das zugehörige Web-Framework \textit{Ruby on Rails}
-gewählt.
+Die objektorientierte Programmiersprache \textit{Ruby} legt Wert auf die Balance von \textit{funktionaler} und
+\textit{imperativer Programmierung}. So verzichtet Ruby beispielsweise auf Klammern zur Kennzeichnung
+von Codeblöcken und behandelt jeden Bestandteil des Codes, wie Variablen, als ein \textit{Objekt},
+welches eigene Methoden besitzt. Das macht die Verarbeitung und Manipulation von Informationen sehr
+intuitiv und leicht nachvollziehbar. Zusätzlich werden Ruby und sein Web-Framework \textit{Ruby on Rails}
+quelloffen verwaltet, entwickelt und sind gut dokumentiert. Unter Berücksichtigung dieser Aspekte
+wurde Ruby und \acs{RoR} als Programmiersprache für das Projekt gewählt.
 
-Ruby basiert auf den Programmiersprachen Perl, Smalltalk, Eiffel, Ada und Lisp und legt Wert auf
-die Balance von \textit{funktionaler} und \textit{imperativer Programmierung}. So verzichtet Ruby
-beispielsweise auf Klammern zur Kennzeichnung von Codeblöcken und behandelt jeden Bestandteil des
-Codes, wie Variablen,als ein \textit{Objekt}, welches eigene Methoden besitzt. Das macht die
-Verarbeitung und Manipulation von Informationen sehr intuitiv und unterstreicht das Prinzip Rubys,
-den Programmierer nicht durch Restriktionen und sprachlichen Eigenheiten bei seiner eigentlichen
-Arbeit zu behindern.
-
-Ruby und sein Framework Ruby on Rails werden quelloffen verwaltet und entwickelt. Neben den
-existierenden Programmbibliotheken existieren zusätzlich von der Community bereitgestellte Module,
-sogenannte \textit{Gems}, welche wie kleine zusätzliche Bibliotheken behandelt werden können. Die
-Einbindung dieser Gems in ein bestehendes Projekt vermeidet Duplikation und erspart viel
-Entwicklungszeit.
+Neben den existierenden Programmbibliotheken existieren zusätzlich von der Community bereitgestellte Module,
+sogenannte \textit{Gems}. Die Einbindung dieser Gems in ein bestehendes Projekt vermeidet
+Duplikation und erspart viel Entwicklungszeit.
 
 \subsection{Benutzeroberfläche}
 \label{sec:Benutzeroberfläche}
