@@ -30,7 +30,7 @@
 
 % füge Code-Snippet mit Caption ein
 \newcommand{\snip}[3]
-{\begin{figure}
+{\begin{figure}[htb]
 \centering
 \singlespacing
 \lstinputlisting[firstline=#2, lastline=#3]{Listings/#1}
@@ -38,7 +38,6 @@
 \label{#2}
 \end{figure}
 }
-
 
 % füge Abbildungen mit Caption ein
 \newcommand{\abb}[4]

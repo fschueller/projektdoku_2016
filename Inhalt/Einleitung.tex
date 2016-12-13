@@ -20,11 +20,11 @@ Entwicklungsumgebung, die sogenannten Engineering Services, bereitstellen.
 \subsection{Projektbeschreibung}
 \label{sec:Projektbeschreibung}
 Zur Entwicklung der Open-Source-Software setzt die SUSE Linux GmbH in Teilen der Entwicklung
-auf externe Tools und Services ein. Dies wird besonders im Bereich der Codeentwicklung und -pflege
+externe Tools und Services ein. Dies wird besonders im Bereich der Codeentwicklung und -pflege
 deutlich, da neben den firmeneigenen Entwicklern auch Partner sowie Open-Source-Community-Mitglieder
 mitarbeiten. Hierbei kann es zu der Diskrepanz kommen, dass Entwickler neben ihrem Firmenaccount
-auch private Accounts zur Entwicklung benutzen, wodurch eine genaue Zuordnung der Accounts und
-ein Überblick über Zugriffsberechtigungen nahezu unmöglich wird.
+auch private Accounts zur Entwicklung benutzen. Dies hat zur Folge, dass eine genaue Zuordnung
+der Accounts sowie ein Überblick über die Zugriffsberechtigungen nahezu unmöglich wird.
 
 Zur Lösung dieser Problematik soll eine Applikation entwickelt werden, welche es ermöglicht
 eine Zuordnung der firmeninternen Accounts auf mögliche Accounts externer Services durchzuführen.
@@ -58,14 +58,21 @@ Zugriff zu ermöglichen. Ist dieser Aufwand bereits groß, erhöht er sich bei V
 der Firma, wenn es gegebenenfalls auf Grund fehlender Kontaktmöglichkeit sehr mühsam wird eine Zuordnung
 nachzuvollziehen.
 
-Bei Organisationen mit mehreren hundert Mitgliedern entsteht dadurch ein großer zeitlicher und
-personeller Aufwand. Durch die dezentrale Beschaffung der benötigten Informationen ist das bisherige
-Konzept sehr fehleranfällig und ineffizient durchzuführen.
+Der Abgleich der internen Mitarbeiter- mit den Userlisten innerhalb der angelegten Organisationen
+erfolgt bisher manuell. Das bedeutet, neue Mitarbeiter müssen persönlich oder virtuell
+kontaktiert werden, damit persönliche User-Aliase zur jeweiligen Organisation hinzugefügt
+werden können. Hierduch wird der Zugriff entsprechend der festgelegten Berechtigung ermöglicht.
+
+Ein Vorgang, der mit steigender Nutzer- und Tool-Zahl an Aufwand und Komplexität zunimmt.
+Zusätzlich ist durch die dezentrale Beschaffung der benötigten Informationen das bisherige
+Konzept sehr fehleranfällig und nur ineffizient durchzuführbar.
 
 \subsection{Soll-Konzept}
 \label{sec:Soll-Konzept}
-Wie in der Ist-Analyse aufgezeigt benötigt der bisherige Prozess viel Zeit und ist kompliziert
-durchzuführen. Ziel ist die Vereinfachung des Prozesses und die Entlastung des administrativen Personals.
+Ziel des Projektes ist es, eine geeignete Webapplikation zu entwickeln,
+die den bisherigen, oben aufgezeigten Prozess zentralisiert und vereinfacht.
+Hierdurch wird ebenfalls die Entlastung des administrativen Personals angestrebt.
+
 Die Lösung dafür stellt eine personenbezogene Zuordnung der internen Mitarbeiterdaten zu den jeweiligen
 externen Nutzerkonten dar. Gleichzeitig soll durch Anbieten als \textit{Self-Service} eine weitere
 Entlastung vorgenommen werden. Hierbei werden Änderungen und Verwaltung der Accountinformationen durch den Mitarbeiter
