@@ -69,35 +69,56 @@ Konzept sehr fehleranfällig und nur ineffizient durchzuführbar.
 
 \subsection{Soll-Konzept}
 \label{sec:Soll-Konzept}
-Ziel des Projektes ist es, eine geeignete Webapplikation zu entwickeln,
-die den bisherigen, oben aufgezeigten Prozess zentralisiert und vereinfacht.
-Hierdurch wird ebenfalls die Entlastung des administrativen Personals angestrebt.
+Ziel des Projektes ist es, eine geeignete Webapplikation zu entwickeln, die den bisherigen, oben aufgezeigten Prozess zentralisiert und vereinfacht. Hierdurch wird ebenfalls die Entlastung des administrativen Personals angestrebt.
+Die Lösung dafür stellt eine personenbezogene Zuordnung der internen Mitarbeiterdaten zu den jeweiligen externen Nutzerkonten dar.
+Realisiert werden soll dies als \textit{Self-Service}. Hierbei sind Änderungen sowie die Verwaltung der Accountinformationen durch den Mitarbeiter selbst durchzuführen. Ausnahme stellt das Hinzufügen zu und Entfernen aus den entsprechenden Organisationen dar.
 
-Die Lösung dafür stellt eine personenbezogene Zuordnung der internen Mitarbeiterdaten zu den jeweiligen
-externen Nutzerkonten dar. Gleichzeitig soll durch Anbieten als \textit{Self-Service} eine weitere
-Entlastung vorgenommen werden. Hierbei werden Änderungen und Verwaltung der Accountinformationen durch den Mitarbeiter
-durchgeführt. Lediglich das Hinzufügen zu oder Entfernen aus den entsprechenden Organisationen obliegt weiterhin den
-Administratoren.
+Zur Abfrage der mitarbeiterspezifischen Informationen, wie Name, Standort oder Vorgesetzter, soll
+das firmeneigene \textit{eDirectory} als Datenquelle genutzt werden.
 
-Zur Abfrage der mitarbeiterspezifischen Informationen, wie Name, Standort oder Vorgesetzter, kann
-das firmeneigene \textit{eDirectory} genutzt werden.
+Die Applikation soll zur Funktionsdarstellung die die externen Services “Github” und “Trello” einbinden.
 
 Um dem Mitarbeiter Möglichkeit zur Eigeninitiative einzuräumen, können die Schnittstellen der
 genannten externen Tools Github und Trello genutzt werden, um bei Hinzufügen der Nutzerinformation
 die Organisationszugehörigkeit abzufragen. Durch eine Abfrage im Hintergrund und Anzeige eines
 passenden Hinweises kann der jeweilige Mitarbeiter den Administratoren selbst eine Anfrage schicken.
 
-Um Erreichbarkeit und einfache Bedienbarkeit zu gewährleisten, bietet sich die Umsetzung als
-Webapplikation an. Um diese leicht wartbar und für zukünftige Funktionen erweiterbar zu halten, soll
-ein modulares Framework genutzt werden.
+Da das Tool firmenweite eingesetzt werden soll, muss eine intuitive und lokalisierbare Bedienbarkeit gewährleistet sein. Die Realisierung als Webapplikation ist daher bevorzugt.
 
-Die Applikation soll so entwickelt werden, dass sie zukünftig anpassbar und erweiterbar ist. Dies
-stellt die zusätzliche Anforderung an den Quellcode, dass dieser in einer entsprechenden nachvollziehbaren
-Form geschrieben wird.
+Die Entwicklung soll auf ein modulares Framework zurückgreifen. Gleichzeitig soll die Applikation anpassbar und erweiterbar sein. Dies stellt ebenso eine Anforderung an den Quellcode, so dass dieser in einer entsprechend nachvollziehbaren Form geschrieben sein muss.
 
-Die Schnittstelle der Applikation, welche die gesammelten Informationen über den Mitarbeiter
-bereitstellt, wird in dem Administrationstool "etsync" konsumiert, welches für die Administration
-externen Tools entwickelt wurde.
+Die Informationen die das Tool mittels seiner API bereitstellt, müssen für das Administrationstool "etsync" konsumierbar und verarbeitbar sein. Dies ist bereits in der Organisation vorhanden und ist nicht Teil dieses Projektes.
+
+%
+% Ziel des Projektes ist es, eine geeignete Webapplikation zu entwickeln,
+% die den bisherigen, oben aufgezeigten Prozess zentralisiert und vereinfacht.
+% Hierdurch wird ebenfalls die Entlastung des administrativen Personals angestrebt.
+%
+% Die Lösung dafür stellt eine personenbezogene Zuordnung der internen Mitarbeiterdaten zu den jeweiligen
+% externen Nutzerkonten dar. Gleichzeitig soll durch Anbieten als \textit{Self-Service} eine weitere
+% Entlastung vorgenommen werden. Hierbei werden Änderungen und Verwaltung der Accountinformationen durch den Mitarbeiter
+% durchgeführt. Lediglich das Hinzufügen zu oder Entfernen aus den entsprechenden Organisationen obliegt weiterhin den
+% Administratoren.
+%
+% Zur Abfrage der mitarbeiterspezifischen Informationen, wie Name, Standort oder Vorgesetzter, kann
+% das firmeneigene \textit{eDirectory} genutzt werden.
+%
+% Um dem Mitarbeiter Möglichkeit zur Eigeninitiative einzuräumen, können die Schnittstellen der
+% genannten externen Tools Github und Trello genutzt werden, um bei Hinzufügen der Nutzerinformation
+% die Organisationszugehörigkeit abzufragen. Durch eine Abfgrage im Hintergrund und Anzeige eines
+% passenden Hinweises kann der jeweilige Mitarbeiter den Administratoren selbst eine Anfrage schicken.
+%
+% Um Erreichbarkeit und einfache Bedienbarkeit zu gewährleisten, bietet sich die Umsetzung als
+% Webapplikation an. Um diese leicht wartbar und für zukünftige Funktionen erweiterbar zu halten, soll
+% ein modulares Framework genutzt werden.
+%
+% Die Applikation soll so entwickelt werden, dass sie zukünftig anpassbar und erweiterbar ist. Dies
+% stellt die zusätzliche Anforderung an den Quellcode, dass dieser in einer entsprechenden nachvollziehbaren
+% Form geschrieben wird.
+%
+% Die Schnittstelle der Applikation, welche die gesammelten Informationen über den Mitarbeiter
+% bereitstellt, wird in dem Administrationstool "etsync" konsumiert, welches für die Administration
+% externen Tools entwickelt wurde.
 
 \subsection{Projektverantwortlicher}
 \label{sec:Projektverantwortlicher}
