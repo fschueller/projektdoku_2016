@@ -41,10 +41,10 @@
 
 \phantomsection
 \listoftables
-%
-% \phantomsection
-% \lstlistoflistings
-% \cleardoublepage
+
+\phantomsection
+% \addcontentsline{toc}{section}{Quellcodeverzeichnis}
+\lstlistoflistings
 
 \newcommand{\abkvz}{Abkürzungsverzeichnis}
 \renewcommand{\nomname}{\abkvz}
@@ -57,13 +57,6 @@
 % Inhalt ---------------------------------------------------------------------
 \pagenumbering{arabic}
 \input{Inhalt.tex}
-
-% % Literatur ------------------------------------------------------------------
-% \clearpage
-% \renewcommand{\refname}{Literaturverzeichnis}
-% \bibliography{Bibliographie}
-% \bibliographystyle{Allgemein/natdin} % DIN-Stil des Literaturverzeichnisses
-% \input{Erklaerung}
 
 % % Anhang ---------------------------------------------------------------------
 % \clearpage
