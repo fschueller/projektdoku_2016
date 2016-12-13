@@ -15,7 +15,7 @@ Für das Projekt wurde folgende Zeitplanung aufgestellt:
 Außer dem Auszubildenden werden keine weiteren Mitarbeiter für das Projekt eingesetzt. Dieser wird
 dafür von seiner regulären Mitarbeit im Team freigestellt. Einen Sonderstatus nimmt dabei der
 Projektverantwortliche ein. Im Bezug auf Anforderungen nimmt er eine kundenähnliche Rolle ein, ist
-aber ansonsten nicht Teil der Entwicklung.
+ist aber ansonsten nicht in die Entwicklung involviert.
 \subsubsection{Kostenplanung}
 \label{sec:Kostenplanung}
 Um die Übersichtlichkeit zu erhöhen, werden die Kosten wie folgt gegliedert und erläutert:
@@ -23,20 +23,21 @@ Um die Übersichtlichkeit zu erhöhen, werden die Kosten wie folgt gegliedert un
 	\item \textbf{Personalkosten}: Belaufen sich auf die Höhe der Ausbildungsvergütung für den Zeitraum des Projekts.
 	\item \textbf{Entwicklungskosten}: Belaufen sich auf Summe der anfallenden Kosten für die Entwicklung der Applikation.
 	Hierzu gehören notwendige IT, Internetanschluss, Büro usw. Im Zuge dieses Projektes lassen sich die Kosten nicht
-	von den regulären Betriebskosten trennen. Sie werden daher der Einfachheit halber für das Projekt als gegeben
+	von den regulären Betriebskosten des Unternehmens trennen. Sie werden daher der Einfachheit halber für das Projekt als gegeben
 	angesehen.
 	\item \textbf{Softwarelizenzen}: Durch die ausschließliche Nutzung einer Entwicklungsumgebung und Werkzeugen aus dem
-	Open-Source-Bereich entstehen keine zusätzlichen Kosten für Nutzung von Software.
+	Open-Source-Bereich entstehen keine zusätzlichen Kosten.
 \end{itemize}
 
 \subsection{Entwicklungsprozess}
 \label{sec:Entwicklungsprozess}
 Als Entwicklungsmethode wird \textit{Test Driven Development} (\acs{TDD}) eingesetzt. Diese Methode
-sieht vor, dass vor dem Schreiben des eigentichen Quellcodes einer Funktionalität zunächst der
-dazugehörige Test entwickelt wird. Dadurch wird ein einen abstrakterer und
-zielorientierterer Blick auf die eigentlich geforderten Funktionen der Applikation ermöglicht, in
-dem als erstes eine Überlegung über das Ergebnis einer Funktion und daraufhin die eigentliche Implementierung
-des jeweiligen Algorithmus erfolgt, welcher zu dem gewünschten Ergebnis führt.
+sieht vor, dass vor dem Schreiben des eigentichen Quellcodes zuerst der
+dazugehörige Test entwickelt wird. Dadurch wird ein abstrakter und
+zielorientierter Blick auf die eigentlichen Anforderungen an die Applikation ermöglicht.
+Hierbei als erstes eine Überlegung über das Ergebnis einer Funktion angestellt und darauf
+aufbauend die eigentliche Implementierung des jeweiligen Algorithmus gestartet, welcher das gewünschte
+Ergebnis erzielen soll.
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
@@ -67,7 +68,7 @@ Die entscheidenden Aspekte werden im folgenden Absatz erläutert.
 
 Die objektorientierte Programmiersprache Ruby legt Wert auf die Balance von \textit{funktionaler} und
 \textit{imperativer Programmierung}. So verzichtet Ruby beispielsweise auf Klammern zur Kennzeichnung
-von Codeblöcken und behandelt jeden Bestandteil des Codes, wie Variablen, als ein \textit{Objekt},
+von Codeblöcken und behandelt jeden Bestandteil des Codes, wie beispielsweise Variablen, als ein \textit{Objekt},
 welches eigene Methoden besitzt. Das macht die Verarbeitung und Manipulation von Informationen sehr
 intuitiv und leicht nachvollziehbar. Zusätzlich werden Ruby und \acs{RoR}
 quelloffen verwaltet sowie entwickelt und sind gut dokumentiert.
@@ -78,25 +79,32 @@ Duplikation und erspart viel Entwicklungszeit.
 
 \subsection{Benutzeroberfläche}
 \label{sec:Benutzeroberfläche}
-Da nicht auf Mitarbeiter aus dem Team der Webdesigner zurückgegriffen und möglichst zeiteffizient
-eine für Nutzer verständliche Oberfläche realisiert werden musste, fiel die Entscheidung auf
+Da es sich über kein teamübergreifendes Projekt handelt und möglichst zeiteffizient
+eine für Nutzer verständliche Oberfläche realisiert werden muss, fiel die Entscheidung auf
 \textit{Twitter Bootstrap}.
 Das CSS-Framework Twitter Bootstrap wird häufig zur Gestaltung von Webseiten und
 -applikationen verwendet, da es ein über eine umfangreiche Bibliothek an Gestaltungsvorlagen
-verfügt und sehr leicht in ein Projekt zu integrieren ist. Auch unerfahrenen Anwendern gelingt damit
-mühelos ein ansprechende und responsive Nutzeroberfläche.
+verfügt und sehr leicht in ein Projekt zu integrieren ist.
 
 \subsection{Rechteverteilung}
 \label{sec:Rechteverteilung}
-Die Applikation soll von zwei verschiedenen Arten von Usern verwendet werden: dem regulären
-Mitarbeiter, der einzig Zugriff auf seine verwalteten Informationen zu externen Services hat, und
-einem Administrator, der neben der Bearbeitung seines eigenen Datensatzes auch jene aller in der
-Datenbank vorhandenen Mitarbeiter einsehen, abfragen und löschen kann.
-
-Diese Rechteverteilung kann über ein \textit{Flag} gelöst werden, welches die einfachste Methode ist.
-Aus sicherheitsrelevanter Sicht ist diese aber als nicht optimal zu bewerten, da sie sich als leicht
-manipulierbar erwiesen hat. Aus diesem Grund wurde entschieden, die Rechteverteilung auf
+Die Applikation wird durch zwei verschiedenen Arten von Usern verwendet:
+\begin{itemize}
+	\item Den regulären Mitarbeitern, die einzig Zugriff auf die eigenverwalteten Informationen über die jeweiligen externen Services haben
+	\item Den Administratoren, die alle Datensätze der in der Datenbank vorhandenen Mitarbeiter einsehen, abfragen und löschen können.
+\end{itemize}
+Die Rechteverwaltung kann mittels des Einsatztes von \textit{Flags} realisiert werden, welches auch die einfachste Methode darstellt. Aus Sichtweise der IT-Sicherheit ist diese jedoch nicht optimal, da eine Manipulation nicht ausschliessbar ist. Daher wurde entschieden, die Rechteverteilung auf
 Datenbankebene zu realisieren.
+% Die Applikation soll durch zwei verschiedenen Arten von Nutzern verwendet werden:
+%
+% dem regulären Mitarbeiter, der einzig Zugriff auf seine verwalteten Informationen zu externen Services hat, und
+% einem Administrator, der neben der Bearbeitung seines eigenen Datensatzes auch jene aller in der
+% Datenbank vorhandenen Mitarbeiter einsehen, abfragen und löschen kann.
+%
+% Diese Rechteverteilung kann über ein \textit{Flag} gelöst werden, welches die einfachste Methode ist.
+% Aus sicherheitsrelevanter Sicht ist diese aber als nicht optimal zu bewerten, da sie sich als leicht
+% manipulierbar erwiesen hat. Aus diesem Grund wurde entschieden, die Rechteverteilung auf
+% Datenbankebene zu realisieren.
 
 \subsection{Datenmodell}
 \label{sec:Datenmodell}
@@ -112,9 +120,10 @@ externe Services, notwendig sind, wurden diese Beziehungen mit Hilfe der sogenan
 \abb{Beispielhafte Darstellung der STI}{fig:STI-Beispiel}{STI-Figure.pdf}{0.5}
 
 Diese spezielle Vererbungsstrategie lässt sich mit Hilfe der in Rails eingebauten
-\textit{Active Record}-Engine durch das einfache Hinzufügen eines Typ-Attributs an das Model
-umsetzen.
-\pagebreak
+\textit{Active Record}-Engine umsetzen, d.h. durch das einfache Hinzufügen eines Typ-Attributs an das Model.
+% Diese spezielle Vererbungsstrategie lässt sich mit Hilfe der in Rails eingebauten
+% \textit{Active Record}-Engine durch das einfache Hinzufügen eines Typ-Attributs an das Model
+% umsetzen.
 
 \subsection{Schnittstellen}
 \label{sec:Schnittstellen}
@@ -122,7 +131,7 @@ Die Hauptaufgabe der Applikation ist die Bereitstellung der gesammelten Informat
 Mitarbeitern und deren eingetragenen Informationen zu ihren genutzten Services. Dazu soll eine
 eigene Schnittstelle innerhalb der Applikation entwickelt werden, welche die Informationen im
 \textit{JSON}-Format ausgibt. Diese Schnittstelle kann nur von einem Administrator angesprochen
-werden, der sich zuvor als solcher bei der Applikation identifiziert hat.
+werden, der sich zuvor als solcher bei der Applikation authentisiert hat.
 
 \abb{Visualisierung der internen Schnittstelle}{fig:etsync-api}{etsync-api.pdf}{0.6}
 
