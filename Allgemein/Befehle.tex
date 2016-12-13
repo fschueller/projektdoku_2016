@@ -16,8 +16,9 @@
 \newcommand{\insb}{insb.\xspace}
 \newcommand{\ua}{\mbox{u.\,a.}\xspace}
 \newcommand{\usw}{usw.\xspace}
-\newcommand{\Vgl}{Vgl.\xspace}
+\newcommand{\Vgl}{vgl.\xspace}
 \newcommand{\zB}{\mbox{z.\,B.}\xspace}
+\newcommand{\anf}[1]{\glqq#1\grqq}
 
 % Befehle für häufig anfallende Aufgaben
 \newcommand{\Abbildung}[1]{\autoref{fig:#1}}
@@ -26,6 +27,13 @@
 \newcommand{\Zitat}[2][\empty]{\ifthenelse{\equal{#1}{\empty}}{\citep{#2}}{\citep[#1]{#2}}}
 \newcommand{\Autor}[1]{\textsc{#1}} % zum Ausgeben von Autoren
 \newcommand{\itemd}[2]{\item{\textbf{#1}}\\{#2}} % erzeugt ein Listenelement mit fetter Überschrift
+
+% füge Code-Snippet mit Caption ein
+\newcommand{\snip}[3]
+{
+\lstinputlisting[caption=#1, firstline=#2, lastline=#3]{Listings/#1}
+}
+
 
 % füge Abbildungen mit Caption ein
 \newcommand{\abb}[4]
