@@ -54,23 +54,25 @@ Webapplikationen und besteht aus drei Teilen:
 	die angeforderten Informationen an den Controller zurückgibt, der diese wiederum an den
 	entsprechenden View verteilt.
 \end{itemize}
-Diese Aufteilung ermöglicht ein strukturierte und übersichtliche Entwicklung, da Funktionslogik,
-Datenbankoperationen und Ausgabelogik klar getrennt und jeweils namentlich zugehörig gekennzeichnet
-sind.
+Über diese Aufteilung ist eine strukturierte und übersichtliche Entwicklung möglich. Funktionslogik,
+Datenbankoperationen und Ausgabelogik werden klar getrennt und können jeweils namentlich zugehörig
+gekennzeichnet werden.
 
 \abb{MVC-Schema}{fig:MVC-Schema}{MVC-Model.pdf}{0.5}
 
 \subsection{Wahl der Programmiersprache}
 \label{sec:Wahl der Programmiersprache}
-Die objektorientierte Programmiersprache \textit{Ruby} legt Wert auf die Balance von \textit{funktionaler} und
+Als Programmiersprache wurden \textit{Ruby} und sein Web-Framework \textit{Ruby on Rails} gewählt.
+Die entscheidenden Aspekte werden im folgenden Absatz erläutert.
+
+Die objektorientierte Programmiersprache Ruby legt Wert auf die Balance von \textit{funktionaler} und
 \textit{imperativer Programmierung}. So verzichtet Ruby beispielsweise auf Klammern zur Kennzeichnung
 von Codeblöcken und behandelt jeden Bestandteil des Codes, wie Variablen, als ein \textit{Objekt},
 welches eigene Methoden besitzt. Das macht die Verarbeitung und Manipulation von Informationen sehr
-intuitiv und leicht nachvollziehbar. Zusätzlich werden Ruby und sein Web-Framework \textit{Ruby on Rails}
-quelloffen verwaltet, entwickelt und sind gut dokumentiert. Unter Berücksichtigung dieser Aspekte
-wurden Ruby und \acs{RoR} als Programmiersprache für das Projekt gewählt.
+intuitiv und leicht nachvollziehbar. Zusätzlich werden Ruby und \acs{RoR}
+quelloffen verwaltet sowie entwickelt und sind gut dokumentiert.
 
-Neben den existierenden Programmbibliotheken existieren zusätzlich von der Community bereitgestellte Module,
+Neben den vorhandenen Programmbibliotheken existieren zusätzlich von der Community bereitgestellte Module,
 sogenannte \textit{Gems}. Die Einbindung dieser Gems in ein bestehendes Projekt vermeidet
 Duplikation und erspart viel Entwicklungszeit.
 
@@ -91,16 +93,17 @@ Mitarbeiter, der einzig Zugriff auf seine verwalteten Informationen zu externen 
 einem Administrator, der neben der Bearbeitung seines eigenen Datensatzes auch jene aller in der
 Datenbank vorhandenen Mitarbeiter einsehen, abfragen und löschen kann.
 
-Diese Rechteverteilung kann über ein \textit{Flag} gelöst werden, was die einfachste Methode ist.
-Sie ist allerdings aus sicherheitsrelevanter Sicht sehr anfällig und leicht zu manipulieren,
-weswegen entschieden wurde, die Rechteverteilung auf Datenbankebene zu realisieren.
+Diese Rechteverteilung kann über ein \textit{Flag} gelöst werden, welches die einfachste Methode ist.
+Aus sicherheitsrelevanter Sicht ist diese aber als nicht optimal zu bewerten, da sie sich als leicht
+manipulierbar erwiesen hat. Aus diesem Grund wurde entschieden, die Rechteverteilung auf
+Datenbankebene zu realisieren.
 
 \subsection{Datenmodell}
 \label{sec:Datenmodell}
 Das Projekt verfügt über zwei Informationsträger, die in der Datenbank abgebildet werden
 sollen: den \textit{User}-Objekten und den jeweils zugehörigen \textit{Tool}-Objekten.
 
-\abb{Entity-Relationship-Modell}{fig:ER-Modell}{ER-Diagramm.pdf}{0.4}
+\abb{Datenmodell}{fig:Datenmodell}{data-model.pdf}{0.6}
 
 Da für die Applikation zusätzliche Spezialisierungen, wie eine Administrator-Rolle und verschiedene
 externe Services, notwendig sind, wurden diese Beziehungen mit Hilfe der sogenannten
@@ -111,21 +114,22 @@ externe Services, notwendig sind, wurden diese Beziehungen mit Hilfe der sogenan
 Diese spezielle Vererbungsstrategie lässt sich mit Hilfe der in Rails eingebauten
 \textit{Active Record}-Engine durch das einfache Hinzufügen eines Typ-Attributs an das Model
 umsetzen.
+\pagebreak
 
 \subsection{Schnittstellen}
 \label{sec:Schnittstellen}
 Die Hauptaufgabe der Applikation ist die Bereitstellung der gesammelten Informationen zu den
 Mitarbeitern und deren eingetragenen Informationen zu ihren genutzten Services. Dazu soll eine
 eigene Schnittstelle innerhalb der Applikation entwickelt werden, welche die Informationen im
-\textit{JSON}-Format ausgibt. Diese Schnittstelle kann nur authentifiziert angesprochen werden,
-\dahe der User muss eine Administratorrolle besitzen, um Zugriff zu erhalten.
+\textit{JSON}-Format ausgibt. Diese Schnittstelle kann nur von einem Administrator angesprochen
+werden, der sich zuvor als solcher bei der Applikation identifiziert hat.
 
-\abb{Visualisierung der internen Schnittstelle}{fig:etsync-api}{etsync-api.pdf}{0.7}
+\abb{Visualisierung der internen Schnittstelle}{fig:etsync-api}{etsync-api.pdf}{0.6}
 
 \subsection{Paketierung}
 \label{sec:Paketierung}
-Gemäß der Richtline des Teams, in dem die Applikation entwickelt wurde, wird jene als \textit{\acs{RPM}}
-paketiert. Dies ermöglicht eine einfache und sofort funktionsfähige Installation, da alle
+Die Richtlinie des Teams SUSE-IT sieht die Paketierung einer entwickelten Applikation als
+\textit{\acs{RPM}} vor. Dies ermöglicht eine einfache und sofort funktionsfähige Installation, da alle
 notwendigen Programmabhängigkeiten im Paket definiert und während des Installationsprozesses
 abgerufen und mitinstalliert werden. Dadurch ist beispielsweise auch bei Bedarf eine problemlose
-Migration auf einen anderen Server möglich.
+Neuinstallation auf einen anderen Server möglich.
