@@ -30,8 +30,13 @@
 
 % füge Code-Snippet mit Caption ein
 \newcommand{\snip}[3]
-{
-\lstinputlisting[caption=#1, firstline=#2, lastline=#3]{Listings/#1}
+{\begin{figure}
+\centering
+\singlespacing
+\lstinputlisting[firstline=#2, lastline=#3]{Listings/#1}
+\caption{#1}
+\label{#2}
+\end{figure}
 }
 
 

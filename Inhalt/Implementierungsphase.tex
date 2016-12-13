@@ -47,7 +47,7 @@ zur Datenbank wird der Befehl \Code{rake db:migrate} ausgeführt, welcher die Ru
 Um die Integrität der Datenbanktabellen zu erhalten und \ggfs Falscheingaben des Anwenders abzufangen,
 werden in den Models Validierungen implementiert. Diese werden bei jeder Datenbankoperation
 ausgeführt und verhindern bei Eingabe fehlerhafter Daten ein Abspeichern in der Datenbank.
-\newline
+
 \snip{externaltool.rb}{1}{6}
 
 Im Anschluss dessen wurde eine weitere Migration ausgeführt, welche ein Typ-Attribut zu
@@ -72,7 +72,7 @@ wie Anzeige, Hinzufügen und Löschen von Daten des Tool-Models werden von diese
 verarbeitet. Dazu fragt der Controller Informationen zu dem eingeloggten Nutzer aus der User-Tabelle
 ab. Dies wird über das Objekt \Code{current user} realisiert. Das Objekt stammt aus dem
 eingesetzten Authentifizierungs-Gem \anf{Devise} (\Vgl \ref{sec:Anbindung externer Schnittstellen}).
-\newline
+
 \snip{externaltools.controller.rb}{18}{33}
 
 Zur Abgrenzung des Administratorbereichs der Applikation wird ein Administratorverzeichnis angelegt.
@@ -84,7 +84,7 @@ Da nur die Administratoren die Möglichkeit besitzen sollen, Nutzer aus der Date
 befindet sich der \anf{Users Controller} in diesem Unterverzeichnis. Als Kernstück dieses
 Controllers wird die \Code{list user}-Action implementiert, welche die gesammelten Informationen
 zu allen Mitarbeitern aus der Datenbank abfragt und die API bereitstellt.
-\newline
+
 \snip{users.controller.rb}{26}{29}
 
 In ähnlicher Weise wird der \anf{Underlings Controller} implementiert, welcher aber nur
@@ -94,8 +94,8 @@ Informationen zu Teammitgliedern abfragt.
 \label{sec:Implementierung der Benutzeroberfläche}
 Nach der Fertigstellung des grundlegenden Backends erfolgt die Programmierung der Benutzeroberfläche.
 Auch für diese werden Tests geschrieben, die sogenannten \textit{Feature Tests}.
-\newline
-\snip{employee.signin.spec.rb}{1}{33}
+
+\snip{employee.signin.spec.rb}{11}{15}
 
 Wie in der Projektplanung (\Vgl \ref{sec:Benutzeroberfläche}) niedergelegt, wird für die Implementierung
 das Framework Twitter Bootstrap verwendet.
@@ -111,12 +111,8 @@ Als Strategie zur Verbesserung der Performance der Applikation werden sogenannte
 verändernden Elemente auf einer Webseite neu geladen, statt die komplette Seite neu abzurufen.
 Dies verringert die benötigte Antwortzeit des Webservers maßgeblich.
 
-TODO: Screenshot externaltools new action view
-
 Für Zugang zu den Administratoransichten wird die reguläre Mitarbeiteransicht um weitere Tab-Elemente
 erweitert. Diese sind nur bei Login als Administrator sichtbar.
-
-TODO: Screenshot admin view
 
 \subsection{Anbindung externer Schnittstellen}
 \label{sec:Anbindung externer Schnittstellen}
@@ -137,12 +133,12 @@ würde eine gesammelte Abfrage des Status für mehrere hundert Mitarbeiter gleic
 sogenannten \textit{Active Job}-Mechanismus an. Dort wird ein Prozess als Klasse implementiert,
 welcher einmal pro Woche für alle eingetragenen Mitarbeiter einzeln den Mitarbeiterstatus anfragt
 und als \textit{boolean flag} in der Datenbank aktualisiert.
-\newline
+
 \snip{employee.status.job.rb}{1}{13}
 
 Als Kernstück wird die Klasse \Code{LDAPSearch} implementiert, welche für alle zusätzlichen
 LDAP-Abfragen außerhalb des User-Models verwendet wird.
-\newline
+
 \snip{ldap.search.rb}{1}{16}
 
 Gewünscht war ebenfalls die Möglichkeit, dass Mitarbeiter \ggfs in Eigeninitiative eine
