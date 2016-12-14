@@ -47,12 +47,12 @@ Zur Umsetzung der geforderten Modularität der Applikation wurde das sogenannte
 \textit{Model-View-Controller-Schema} (\acs{MVC}) verwendet. Dieses ist ein gängiges Schema beim Aufbau von
 Webapplikationen und besteht aus drei Teilen:
 \begin{itemize}
-	\item das \textit{Model}, welches grob die einzelnen Tabellen einer Datenbank repräsentiert. Es enthält in
+	\item das \textbf{Model}, welches grob die einzelnen Tabellen einer Datenbank repräsentiert. Es enthält in
 	der Regel zusätzliche Logik und Regeln, die zur Verwaltung und Zusammensetzung von Attributen
 	eines Datenbankobjektes notwendig sind.
-	\item der \textit{View}, welcher eine Ausgabe der gewünschten Daten bereitstellt. Im Kontext einer
-	Webapplikation ist dies die eigentlich dargestellte Webseite in \textit{HTML/CSS}.
-	\item der \textit{Controller}, welcher die Schnittstelle zwischen Model und View darstellt.
+	\item der \textbf{View}, welcher eine Ausgabe der gewünschten Daten bereitstellt. Im Kontext einer
+	Webapplikation ist dies die eigentlich dargestellte Webseite in \acs{HTML}/\acs{CSS}.
+	\item der \textbf{Controller}, welcher die Schnittstelle zwischen Model und View darstellt.
 	Im Controller werden Eingaben verarbeitet und Befehle an das Model weitergegeben, welche
 	die angeforderten Informationen an den Controller zurückgibt, der diese wiederum an den
 	entsprechenden View verteilt.
@@ -95,7 +95,7 @@ Die Applikation wird durch zwei verschiedenen Arten von Usern verwendet:
 	\item Den regulären Mitarbeitern, die einzig Zugriff auf die eigenverwalteten Informationen über die jeweiligen externen Services haben
 	\item Den Administratoren, die alle Datensätze der in der Datenbank vorhandenen Mitarbeiter einsehen, abfragen und löschen können.
 \end{itemize}
-Die Rechteverwaltung kann mittels des Einsatztes von \textit{Flags} realisiert werden, welches auch die einfachste Methode darstellt. Aus Sichtweise der IT-Sicherheit ist diese jedoch nicht optimal, da eine Manipulation nicht ausschliessbar ist. Daher wurde entschieden, die Rechteverteilung auf
+Die Rechteverwaltung kann mittels des Einsatzes von \textit{Flags} realisiert werden, welches auch die einfachste Methode darstellt. Aus Sichtweise der IT-Sicherheit ist diese jedoch nicht optimal, da eine Manipulation nicht ausschliessbar ist. Daher wurde entschieden, die Rechteverteilung auf
 Datenbankebene zu realisieren.
 
 \subsection{Datenmodell}
@@ -126,8 +126,15 @@ werden, der sich zuvor als solcher bei der Applikation authentisiert hat.
 
 \subsection{Paketierung}
 \label{sec:Paketierung}
-Die Richtlinie des Teams SUSE-IT sieht die Paketierung einer entwickelten Applikation als
-\textit{\acs{RPM}} vor. Dies ermöglicht eine einfache und sofort funktionsfähige Installation, da alle
-notwendigen Programmabhängigkeiten im Paket definiert und während des Installationsprozesses
-abgerufen und mitinstalliert werden. Dadurch ist beispielsweise auch bei Bedarf eine problemlose
-Neuinstallation auf einen anderen Server möglich.
+
+Entsprechend der Richtlinien der SUSE-IT müssen entwickelte
+Applikationen als \acs{RPM}-Paket gebaut und bereitgestellt werden. Dies
+ermöglicht eine einfache und automatisierbare Installation, da alle
+notwendigen Programmabhängigkeiten im Paket definiert werden und durch
+die eingesetzte Paketverwaltungs-Software automatisch aufgelöst und
+nachinstalliert werden können.
+%
+% Die Richtlinie des Teams SUSE-IT sieht die Paketierung einer entwickelten Applikation als
+% \textit{\acs{RPM}} vor. Dies ermöglicht eine einfache und sofort funktionsfähige Installation, da alle
+% notwendigen Programmabhängigkeiten im Paket definiert und während des Installationsprozesses
+% abgerufen und mitinstalliert werden.

@@ -12,22 +12,42 @@ effizienten Algorithmus für die \Code{LDAPSearch}-Klasse erwies sich als zeitin
 Die komplette Paketierung samt aller Abhängigkeiten nahm auch marginal mehr Zeit in Anspruch, da
 nicht alle Gems in der gewünschten Version paketiert vorlagen.
 
-Diese Differenz konnte allerdings durch die stark verkürzte Testphase ausgeglichen werden.
+Diese Differenz konnte allerdings durch die stark verkürzte Testphase ausgeglichen werden, welche im
+Kapitel Testphase (\Vgl \ref{sec:Testphase}) näher ausgeführt ist.
 
 \tabelle{Soll-/Ist-Vergleich}{tab:Soll-/Ist-Vergleich}{Zeitnachher}
-\pagebreak
 
 \subsection{Soll-/Ist-Vergleich}
 \label{sec:SollIstVergleich}
+Zum Abschluss des Projektes erfolgt eine Kontrolle, dass alle im Soll-Konzept aufgeführten
+Anforderungen erfüllt werden.
+
+Zusammenfassend kann angeführt werden, dass eine Webapplikation im Stil eines Self-Service
+geschaffen wurde. Diese wurde mit Ruby sowie Ruby on Rails in einem modularen Aufbau erstellt.
+
+Als Datenquelle für die Mitarbeiterinformationen wird das interne eDirectory verwendet.
+
+Über die realisierten Benutzerrollen ist die Verwaltung der eigenen Informationen für jeden Benutzer
+möglich. Jedoch ist nur Administratoren zusätzlich Einsicht in die Datenbank sowie das Entfernen von
+Benutzern aus dem Tool gestattet.
+
+Die API ist nur als authentisierter Administrator benutzbar.
 
 \subsection{Projektabnahme}
 \label{sec:Projektabnahme}
-Die Projektabnahme erfolgte mit einer kurzen Präsentation und Demonstration der Applikation für den
+Die Projektabnahme erfolgt mit einer kurzen Präsentation und Demonstration der Applikation für den
 Projektbetreuer sowie die in Frage kommenden Administratoren der Organisationen.
+
+Bereits während dieser Phase war eine deutliche Verbesserung gegenüber dem in der Ist-Analyse
+aufgezeigten Prozesses zu vermerken.
 
 \subsection{Firmenweite Einführung}
 \label{Firmenweite Einführung}
-Nach Abnahme des Projekts wurde zu einem festgelegten Stichtag eine Ankündigungsmail auf den
-internen Mailinglisten verschickt, welche kurz den Nutzen der Applikation erklärt und alle
-Mitarbeiter zur Eintragung ihrer Daten aufruft. Desweiteren wurde das Anlegen des Datensatzes für
-jeden neuen Mitarbeiter verpflichtend als Richtlinie eingeführt.
+Die firmenweiter Einführung des Tools erfolgte in mehreren Schritten:
+
+Der operative Betrieb der Applikation sowie die Freigabe und Bekanntgabe wird durch SUSE-IT
+sichergestellt.
+Zu einem festgelegten Termin ist eine E-Mail mit einer Anleitung für die Benutzer versendet worden.
+
+Nach der Einführungsphase ist das Tool in die Firmenrichtlinie \anf{Nutzung interner Entwicklungstools}
+aufgenommen worden.

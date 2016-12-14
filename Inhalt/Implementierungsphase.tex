@@ -8,7 +8,7 @@
 
 \subsection{Einleitung}
 \label{sec:Einleitung}
-Nach der Planungsphase wurde im direkten Anschluss die Implementierungsphase eingeleitet. Diese
+Nach der Planungsphase wird im direkten Anschluss die Implementierungsphase eingeleitet. Diese
 umfasst die folgenden Schritte, welche in diesem Kapitel einzeln näher erläutert werden:
 \begin{enumerate}
 	\item Implementierung des Backends
@@ -22,49 +22,62 @@ umfasst die folgenden Schritte, welche in diesem Kapitel einzeln näher erläute
 
 \subsection{Implementierung des Backends}
 \label{sec:Implementierung des Backends}
-Als erster Schritt erfolgt die initiale Erstellung eines \acs{RoR}-Projektes.
+Als erster Schritt erfolgt die initiale Erstellung eines Ruby on Rails-Projektes.
 Nach Installation der zugehörigen Entwicklungsumgebung geschieht dies einfach mit Ausführung des
 Befehls \Code{rails new} im Arbeitsverzeichnis. Mit Hilfe dieses Befehls wird eine
 standardisierte Projektmappe erzeugt.
 
-RoR bringt viele eingebaute Kommandozeilenbefehle mit, welche die Ausführung von
-Entwicklungsschritten automatisiert. Beispielsweise kann das Anlegen von relevanten Dateien im
-korrekten Verzeichnis direkt über einen solchen Befehl erledigt werden. Dadurch beschleunigt sich der Entwicklungsprozess massiv.
+RoR besitzt viele integrierte Kommandozeilenbefehle, mit denen es
+möglich ist, die Ausführung von
+Entwicklungsschritten zu automatisieren. Beispielsweise kann das Anlegen
+von relevanten Dateien innerhalb der entsprechenden Verzeichnisstruktur
+direkt über diese Befehle erledigt werden, was zu einer Beschleunigung
+der Entwicklungsprozesse führt.
 
 Das \textit{Gemfile} bildet die zentrale Auflistung der von der Applikation genutzten Gems. Da die
 Entwicklung der Applikation im Sinne des \acs{TDD} (\Vgl \ref{sec:Entwicklungsprozess}) erfolgt,
-wurde hier zunächst die Testsuite \textit{rspec} hinzugefügt und die ersten Tests für die Models
+wird hier zunächst die Testsuite \textit{rspec} hinzugefügt und die ersten Tests für die Models
 (\Vgl \ref{sec:Architekturdesign}) geschrieben.
 
 \subsubsection{Erstellen der Models}
 \label{sec:Erstellen der Models}
-Erst nach Schreiben der Tests erfolgte die Erstellung der eigentlichen Modeldateien samt jeweils
+Erst nach Schreiben der Tests erfolgte die Erstellung der eigentlichen Model-Dateien samt jeweils
 zugehörigen Attributen. Dies geschieht mit Hilfe sogenannter \textit{Migrationen},
 Datenbankoperationen geschrieben in Ruby. Zum Hinzufügen der so definierten Tabellen und Attribute
 zur Datenbank wird der Befehl \Code{rake db:migrate} ausgeführt, welcher die Ruby-Syntax in
-\textit{\acs{SQL}} übersetzt.
+\acs{SQL} übersetzt.
 
-Um die Integrität der Datenbanktabellen zu erhalten und \ggfs Falscheingaben des Anwenders abzufangen,
+Um die Integrität der Datenbanktabellen zu erhalten und \ggfs Fehleingaben der Anwender abzufangen,
 werden in den Models Validierungen implementiert. Diese werden bei jeder Datenbankoperation
-ausgeführt und verhindern bei Eingabe fehlerhafter Daten ein Abspeichern in der Datenbank.
+ausgeführt und sollen verhindern, dass fehlerhafte Daten in der Datenbank abgespeichert werden.
 
 \snip{externaltool.rb}{1}{6}
 
-Im Anschluss dessen wurde eine weitere Migration ausgeführt, welche ein Typ-Attribut zu
-beiden Models hinzufügt. Dadurch wurde die in der Projektplanung niedergelegte Vererbungsstrategie
-der \acs{STI} realisiert (\Vgl \ref{sec:Datenmodell}).
+Im Anschluss wird eine weitere Migration ausgeführt, welche ein Typ-Attribut zu den
+beiden Models hinzufügt. Hiermit wurde die in der
+Projektplanung erfasste Vererbungsstrategie \acs{STI} realisiert (\Vgl
+\ref{sec:Datenmodell}).
 
 \subsubsection{Erstellen der Controller}
 \label{sec:Erstellen der Controller}
-Per Konvention wird für jedes Model mindestens ein Controller erstellt, allerdings benötigt nicht jeder
-Controller ein Model. Jedoch befinden sich in jedem Controller eine oder mehr Methoden, sogenannte
-Actions. Ruft ein Nutzer beispielsweise die Webseite zum Hinzufügen eines neuen Alias für einen
-externen Service auf, wird seine Anfrage an die \Code{new}-Action des jeweiligen Controllers weitergeleitet
-(\Vgl \ref{sec:Architekturdesign}).
+Entsprechend der Konvention wird für jedes Model mindestens ein
+Controller erstellt, jedoch benötigt nicht jeder Controller ein Model.
+Allerdings ist in jedem Controller mindestens eine Methode, die als
+\anf{Action} bezeichnet wird, zwingend erforderlich. Wird beispielsweise
+durch einen Benutzer die Webseite zum Hinzufügen eines neuen Alias
+aufgerufen, wird diese Anfrage an die \Code{new}-Action des
+entsprechenden Controllers weitergeleitet.
+(\Vgl \ref{sec:Architekturdesign})
 
-Den Einstiegspunkt der Applikation bildet der \anf{Application Controller}. In diesem wurden
+% Per Konvention wird für jedes Model mindestens ein Controller erstellt, allerdings benötigt nicht jeder
+% Controller ein Model. Jedoch befinden sich in jedem Controller eine oder mehr Methoden, sogenannte
+% Actions. Ruft ein Nutzer beispielsweise die Webseite zum Hinzufügen eines neuen Alias für einen
+% externen Service auf, wird seine Anfrage an die \Code{new}-Action des jeweiligen Controllers weitergeleitet
+% (\Vgl \ref{sec:Architekturdesign}).
+
+Den Einstiegspunkt der Applikation bildet der \anf{Application Controller}. In diesem werden
 verschiedene Strategien implementiert, welche den Betrieb der gesamten Applikation betreffen,
-\bspw das initiale Aufrufen der Nutzerauthentifizierung. Alle anderen Controller erben von diesem
+beispielsweise das initiale Aufrufen der Nutzerauthentifizierung. Alle anderen Controller erben von diesem
 Application Controller und verfügen damit bei Aufruf über alle dort niedergelegten Methoden.
 
 Zunächst wird der \anf{Externaltools Controller} erstellt. Alle relevanten Operationen
@@ -87,8 +100,8 @@ zu allen Mitarbeitern aus der Datenbank abfragt und die API bereitstellt.
 
 \snip{users.controller.rb}{26}{29}
 
-In ähnlicher Weise wird der \anf{Underlings Controller} implementiert, welcher aber nur
-Informationen zu Teammitgliedern abfragt.
+% In ähnlicher Weise wird der \anf{Underlings Controller} implementiert, welcher aber nur
+% Informationen zu Teammitgliedern abfragt.
 
 \subsection{Implementierung der Benutzeroberfläche}
 \label{sec:Implementierung der Benutzeroberfläche}
@@ -100,8 +113,7 @@ Auch für diese werden Tests geschrieben, die sogenannten \textit{Feature Tests}
 Wie in der Projektplanung (\Vgl \ref{sec:Benutzeroberfläche}) niedergelegt, wird für die Implementierung
 das Framework Twitter Bootstrap verwendet.
 
-Die gewünschte Darstellung als \textit{Dashboard} (\Vgl \ref{sec:Soll-Konzept}) mit Panel-Elementen
-lässt sich zeitsparend mit den in Bootstrap vorhandenen Vorlagen erstellen. Die Farbgebung der Elemente wird gemäß der
+Die Nutzeroberfläche lässt sich zeitsparend mit den in Bootstrap vorhandenen Vorlagen erstellen. Die Farbgebung der Elemente wird gemäß der
 Firmenrichtlinien gestaltet.
 
 \abb{Nutzeroberfläche}{fig:Nutzeroberfläche}{externaltoolsscreen.pdf}{0.7}
@@ -109,18 +121,18 @@ Firmenrichtlinien gestaltet.
 Als Strategie zur Verbesserung der Performance der Applikation werden sogenannte
 \textit{Partials} eingesetzt. Bei dieser Herangehensweise werden bei Bedarf nur die sich
 verändernden Elemente auf einer Webseite neu geladen, statt die komplette Seite neu abzurufen.
-Dies verringert die benötigte Antwortzeit des Webservers maßgeblich.
+Dies verringert die benötigte Antwortzeit des Webservers erheblich.
 
 Für Zugang zu den Administratoransichten wird die reguläre Mitarbeiteransicht um weitere Tab-Elemente
 erweitert. Diese sind nur bei Login als Administrator sichtbar.
 
 \subsection{Anbindung externer Schnittstellen}
 \label{sec:Anbindung externer Schnittstellen}
-Als Authentifizierungsmethode wird eine Authentifizierung über \textit{\acs{LDAP}} gewählt. Damit
+Als Authentifizierungsmethode wird eine Authentifizierung über \acs{LDAP} gewählt. Damit
 kann das firmeneigene eDirectory zum Abgleich genutzt und gleichzeitig Informationen über
 den Mitarbeiter abgerufen werden.
 
-Das Gem \textit{Devise} bietet eine umfassende Sammlung an Konfigurationsmöglichkeiten und wird
+Das Gem \anf{Devise} bietet eine umfassende Sammlung an Konfigurationsmöglichkeiten und wird
 daher als Lösung eingesetzt. Beim erstmaligen Einloggen eines Mitarbeiters werden gleichzeitig
 dessen Name, Mitarbeiterkürzel und Informationen zu seinem Standort sowie die interne
 e-Mail-Adresse in der Datenbank abgespeichert. Informationen zum jeweiligen Vorgesetzten des
@@ -132,7 +144,7 @@ würde eine gesammelte Abfrage des Status für mehrere hundert Mitarbeiter gleic
 überlasten. Aus diesem Grund wird ein Hintergrundprozess implementiert. RoR bietet dafür den
 sogenannten \textit{Active Job}-Mechanismus an. Dort wird ein Prozess als Klasse implementiert,
 welcher einmal pro Woche für alle eingetragenen Mitarbeiter einzeln den Mitarbeiterstatus anfragt
-und als \textit{boolean flag} in der Datenbank aktualisiert.
+und als Flag in der Datenbank aktualisiert.
 
 \snip{employee.status.job.rb}{1}{13}
 
@@ -156,7 +168,7 @@ behinderte dies nicht den Abschluss des Projektes.
 \label{sec:Interne Schnittstelle}
 Die Schnittstelle wird für die Verarbeitung durch das Kommandozeilenwerkzeug \anf{etsync} entwickelt.
 Anhand des bestehenden Codes in \anf{etsync} wird die Ausgabe der Schnittstelle modelliert.
-Realisiert wird die Ausgabe in \textit{\acs{JSON}},
+Wie bereits in der Planungsphase erwähnt, erfolgt die Realisierung in \acs{JSON},
 welches ein gebräuchliches Datenformat zum Austausch von Informationen zwischen Anwendungen ist.
 
 Um die gewünschten Informationen korrekt und einfach zu modellieren, wird das Gem \textit{rabl}
@@ -173,7 +185,7 @@ nur von Administratoren authentifiziert zugegriffen werden kann (\Vgl \ref{sec:E
 Nach Implementierung des Projektes konnte eine finale Testphase zeitlich gering gehalten werden.
 Durch den Einsatz von \acs{TDD} wurde die Applikation während der Entwicklung bereits laufend
 getestet und eventuelle Fehler wurden behoben. Neben der Durchführung von \textit{Usability-Tests}
-der Nutzeroberfläche mit Probanden und realen Mitarbeiterdaten fand abschließend ein kompletter
+der Nutzeroberfläche mit Mitarbeitern und ihren Daten fand abschließend ein kompletter
 Durchlauf der Testsammlung statt.
 
 \subsection{Paketierung der Applikation}
