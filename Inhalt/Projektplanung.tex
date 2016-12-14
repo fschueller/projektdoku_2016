@@ -35,9 +35,11 @@ Als Entwicklungsmethode wird \textit{Test Driven Development} (\acs{TDD}) einges
 sieht vor, dass vor dem Schreiben des eigentichen Quellcodes zuerst der
 dazugehörige Test entwickelt wird. Dadurch wird ein abstrakter und
 zielorientierter Blick auf die eigentlichen Anforderungen an die Applikation ermöglicht.
-Hierbei als erstes eine Überlegung über das Ergebnis einer Funktion angestellt und darauf
+Hierbei wird als erstes eine Überlegung über das Ergebnis einer Funktion angestellt und darauf
 aufbauend die eigentliche Implementierung des jeweiligen Algorithmus gestartet, welcher das gewünschte
 Ergebnis erzielen soll.
+
+Neben den Tests für den Quellcode werden ebenfalls Tests für die Benutzeroberfläche entwickelt.
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
@@ -95,16 +97,6 @@ Die Applikation wird durch zwei verschiedenen Arten von Usern verwendet:
 \end{itemize}
 Die Rechteverwaltung kann mittels des Einsatztes von \textit{Flags} realisiert werden, welches auch die einfachste Methode darstellt. Aus Sichtweise der IT-Sicherheit ist diese jedoch nicht optimal, da eine Manipulation nicht ausschliessbar ist. Daher wurde entschieden, die Rechteverteilung auf
 Datenbankebene zu realisieren.
-% Die Applikation soll durch zwei verschiedenen Arten von Nutzern verwendet werden:
-%
-% dem regulären Mitarbeiter, der einzig Zugriff auf seine verwalteten Informationen zu externen Services hat, und
-% einem Administrator, der neben der Bearbeitung seines eigenen Datensatzes auch jene aller in der
-% Datenbank vorhandenen Mitarbeiter einsehen, abfragen und löschen kann.
-%
-% Diese Rechteverteilung kann über ein \textit{Flag} gelöst werden, welches die einfachste Methode ist.
-% Aus sicherheitsrelevanter Sicht ist diese aber als nicht optimal zu bewerten, da sie sich als leicht
-% manipulierbar erwiesen hat. Aus diesem Grund wurde entschieden, die Rechteverteilung auf
-% Datenbankebene zu realisieren.
 
 \subsection{Datenmodell}
 \label{sec:Datenmodell}
@@ -113,17 +105,14 @@ sollen: den \textit{User}-Objekten und den jeweils zugehörigen \textit{Tool}-Ob
 
 \abb{Datenmodell}{fig:Datenmodell}{data-model.pdf}{0.6}
 
-Da für die Applikation zusätzliche Spezialisierungen, wie eine Administrator-Rolle und verschiedene
-externe Services, notwendig sind, wurden diese Beziehungen mit Hilfe der sogenannten
-\textit{Single Table Inheritance} (\acs{STI}) realisiert.
+Da für die Applikation zusätzliche Spezialisierungen der Datenbankobjekte notwendig sind, werden
+diese Beziehungen mit Hilfe der sogenannten \textit{Single Table Inheritance} (\acs{STI}) realisiert.
+Damit können beispielsweise unterschiedliche externe Tools in der Datenbank abgebildet werden.
 
 \abb{Beispielhafte Darstellung der STI}{fig:STI-Beispiel}{STI-Figure.pdf}{0.5}
 
 Diese spezielle Vererbungsstrategie lässt sich mit Hilfe der in Rails eingebauten
 \textit{Active Record}-Engine umsetzen, d.h. durch das einfache Hinzufügen eines Typ-Attributs an das Model.
-% Diese spezielle Vererbungsstrategie lässt sich mit Hilfe der in Rails eingebauten
-% \textit{Active Record}-Engine durch das einfache Hinzufügen eines Typ-Attributs an das Model
-% umsetzen.
 
 \subsection{Schnittstellen}
 \label{sec:Schnittstellen}
