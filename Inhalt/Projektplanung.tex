@@ -14,8 +14,9 @@ Für das Projekt wurde folgende Zeitplanung aufgestellt:
 \label{sec:Personalplanung}
 Außer dem Auszubildenden werden keine weiteren Mitarbeiter für das Projekt eingesetzt. Dieser wird
 dafür von seiner regulären Mitarbeit im Team freigestellt. Einen Sonderstatus nimmt dabei der
-Projektverantwortliche ein. Im Bezug auf Anforderungen nimmt er eine kundenähnliche Rolle ein, ist
+Projektverantwortliche ein. Im Bezug auf Anforderungen nimmt er eine kundenähnliche Rolle ein,
 ist aber ansonsten nicht in die Entwicklung involviert.
+\pagebreak
 \subsubsection{Kostenplanung}
 \label{sec:Kostenplanung}
 Um die Übersichtlichkeit zu erhöhen, werden die Kosten wie folgt gegliedert und erläutert:
@@ -44,7 +45,7 @@ Neben den Tests für den Quellcode werden ebenfalls Tests für die Benutzeroberf
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
 Zur Umsetzung der geforderten Modularität der Applikation wurde das sogenannte
-\textit{Model-View-Controller-Schema} (\acs{MVC}) verwendet. Dieses ist ein gängiges Schema beim Aufbau von
+\anf{Model-View-Controller-Schema} (\acs{MVC}) verwendet. Dieses ist ein gängiges Schema beim Aufbau von
 Webapplikationen und besteht aus drei Teilen:
 \begin{itemize}
 	\item das \textbf{Model}, welches grob die einzelnen Tabellen einer Datenbank repräsentiert. Es enthält in
@@ -81,7 +82,7 @@ Duplikation und erspart viel Entwicklungszeit.
 
 \subsection{Benutzeroberfläche}
 \label{sec:Benutzeroberfläche}
-Da es sich über kein teamübergreifendes Projekt handelt und möglichst zeiteffizient
+Da es sich um kein teamübergreifendes Projekt handelt und möglichst zeiteffizient
 eine für Nutzer verständliche Oberfläche realisiert werden muss, fiel die Entscheidung auf
 \textit{Twitter Bootstrap}.
 Das CSS-Framework Twitter Bootstrap wird häufig zur Gestaltung von Webseiten und
@@ -101,7 +102,7 @@ Datenbankebene zu realisieren.
 \subsection{Datenmodell}
 \label{sec:Datenmodell}
 Das Projekt verfügt über zwei Informationsträger, die in der Datenbank abgebildet werden
-sollen: den \textit{User}-Objekten und den jeweils zugehörigen \textit{Tool}-Objekten.
+sollen: den User-Objekten und den jeweils zugehörigen Tool-Objekten.
 
 \abb{Datenmodell}{fig:Datenmodell}{data-model.pdf}{0.6}
 
@@ -119,7 +120,7 @@ Diese spezielle Vererbungsstrategie lässt sich mit Hilfe der in Rails eingebaut
 Die Hauptaufgabe der Applikation ist die Bereitstellung der gesammelten Informationen zu den
 Mitarbeitern und deren eingetragenen Informationen zu ihren genutzten Services. Dazu soll eine
 eigene Schnittstelle innerhalb der Applikation entwickelt werden, welche die Informationen im
-\textit{JSON}-Format ausgibt. Diese Schnittstelle kann nur von einem Administrator angesprochen
+JSON-Format ausgibt. Diese Schnittstelle kann nur von einem Administrator angesprochen
 werden, der sich zuvor als solcher bei der Applikation authentisiert hat.
 
 \abb{Visualisierung der internen Schnittstelle}{fig:etsync-api}{etsync-api.pdf}{0.6}
@@ -128,13 +129,8 @@ werden, der sich zuvor als solcher bei der Applikation authentisiert hat.
 \label{sec:Paketierung}
 
 Entsprechend der Richtlinien der SUSE-IT müssen entwickelte
-Applikationen als \acs{RPM}-Paket gebaut und bereitgestellt werden. Dies
+Applikationen als \textit{RPM Package Manager}-Paket (\acs{RPM}) gebaut und bereitgestellt werden. Dies
 ermöglicht eine einfache und automatisierbare Installation, da alle
 notwendigen Programmabhängigkeiten im Paket definiert werden und durch
 die eingesetzte Paketverwaltungs-Software automatisch aufgelöst und
 nachinstalliert werden können.
-%
-% Die Richtlinie des Teams SUSE-IT sieht die Paketierung einer entwickelten Applikation als
-% \textit{\acs{RPM}} vor. Dies ermöglicht eine einfache und sofort funktionsfähige Installation, da alle
-% notwendigen Programmabhängigkeiten im Paket definiert und während des Installationsprozesses
-% abgerufen und mitinstalliert werden.

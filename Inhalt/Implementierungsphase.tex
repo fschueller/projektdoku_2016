@@ -34,15 +34,15 @@ von relevanten Dateien innerhalb der entsprechenden Verzeichnisstruktur
 direkt über diese Befehle erledigt werden, was zu einer Beschleunigung
 der Entwicklungsprozesse führt.
 
-Das \textit{Gemfile} bildet die zentrale Auflistung der von der Applikation genutzten Gems. Da die
+Das Gemfile bildet die zentrale Auflistung der von der Applikation genutzten Gems. Da die
 Entwicklung der Applikation im Sinne des \acs{TDD} (\Vgl \ref{sec:Entwicklungsprozess}) erfolgt,
-wird hier zunächst die Testsuite \textit{rspec} hinzugefügt und die ersten Tests für die Models
+wird hier zunächst die Testsuite \anf{rspec} hinzugefügt und die ersten Tests für die Models
 (\Vgl \ref{sec:Architekturdesign}) geschrieben.
 
 \subsubsection{Erstellen der Models}
 \label{sec:Erstellen der Models}
 Erst nach Schreiben der Tests erfolgte die Erstellung der eigentlichen Model-Dateien samt jeweils
-zugehörigen Attributen. Dies geschieht mit Hilfe sogenannter \textit{Migrationen},
+zugehörigen Attributen. Dies geschieht mit Hilfe sogenannter Migrationen,
 Datenbankoperationen geschrieben in Ruby. Zum Hinzufügen der so definierten Tabellen und Attribute
 zur Datenbank wird der Befehl \Code{rake db:migrate} ausgeführt, welcher die Ruby-Syntax in
 \acs{SQL} übersetzt.
@@ -54,7 +54,7 @@ ausgeführt und sollen verhindern, dass fehlerhafte Daten in der Datenbank abges
 \snip{externaltool.rb}{1}{6}
 
 Im Anschluss wird eine weitere Migration ausgeführt, welche ein Typ-Attribut zu den
-beiden Models hinzufügt. Hiermit wurde die in der
+beiden Models hinzufügt. Hiermit wird die in der
 Projektplanung erfasste Vererbungsstrategie \acs{STI} realisiert (\Vgl
 \ref{sec:Datenmodell}).
 
@@ -68,12 +68,6 @@ durch einen Benutzer die Webseite zum Hinzufügen eines neuen Alias
 aufgerufen, wird diese Anfrage an die \Code{new}-Action des
 entsprechenden Controllers weitergeleitet.
 (\Vgl \ref{sec:Architekturdesign})
-
-% Per Konvention wird für jedes Model mindestens ein Controller erstellt, allerdings benötigt nicht jeder
-% Controller ein Model. Jedoch befinden sich in jedem Controller eine oder mehr Methoden, sogenannte
-% Actions. Ruft ein Nutzer beispielsweise die Webseite zum Hinzufügen eines neuen Alias für einen
-% externen Service auf, wird seine Anfrage an die \Code{new}-Action des jeweiligen Controllers weitergeleitet
-% (\Vgl \ref{sec:Architekturdesign}).
 
 Den Einstiegspunkt der Applikation bildet der \anf{Application Controller}. In diesem werden
 verschiedene Strategien implementiert, welche den Betrieb der gesamten Applikation betreffen,
@@ -100,9 +94,6 @@ zu allen Mitarbeitern aus der Datenbank abfragt und die API bereitstellt.
 
 \snip{users.controller.rb}{26}{29}
 
-% In ähnlicher Weise wird der \anf{Underlings Controller} implementiert, welcher aber nur
-% Informationen zu Teammitgliedern abfragt.
-
 \subsection{Implementierung der Benutzeroberfläche}
 \label{sec:Implementierung der Benutzeroberfläche}
 Nach der Fertigstellung des grundlegenden Backends erfolgt die Programmierung der Benutzeroberfläche.
@@ -119,7 +110,7 @@ Firmenrichtlinien gestaltet.
 \abb{Nutzeroberfläche}{fig:Nutzeroberfläche}{externaltoolsscreen.pdf}{0.7}
 
 Als Strategie zur Verbesserung der Performance der Applikation werden sogenannte
-\textit{Partials} eingesetzt. Bei dieser Herangehensweise werden bei Bedarf nur die sich
+\textit{Partial Views} eingesetzt. Bei dieser Herangehensweise werden bei Bedarf nur die sich
 verändernden Elemente auf einer Webseite neu geladen, statt die komplette Seite neu abzurufen.
 Dies verringert die benötigte Antwortzeit des Webservers erheblich.
 
@@ -192,8 +183,8 @@ Durchlauf der Testsammlung statt.
 \label{sec:Paketierung der Applikation}
 Wie bereits in der Projektplanung dargelegt erfolgt nach Entwicklung und finaler Testphase der
 Applikation die Paketierung als RPM. Die Kontrollstruktur eines RPM-Pakets ist das sogenannte
-\textit{Specfile}. In diesem werden alle relevanten Informationen zu dem Softwarepaket,
-wie \bspw Versionsnummer oder Abhängigkeiten auf andere Pakete, niedergelegt.
+Specfile. In diesem werden alle relevanten Informationen zu dem Softwarepaket,
+wie beispielsweise Versionsnummer oder Abhängigkeiten auf andere Pakete, niedergelegt.
 
 Um das Paket immer auf dem neuesten Stand zu halten, wird über ein Skript bei einer
 Codeaktualisierung des Projekts automatisch die Ausführung der Testsammlung ausgelöst.
