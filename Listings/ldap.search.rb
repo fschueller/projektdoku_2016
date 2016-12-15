@@ -5,7 +5,7 @@ class LDAPSearch
       result_attrs = [ search_param, result_param ]
       search_filter = Net::LDAP::Filter.eq( search_param, user_param )
       result = []
-      Net::LDAP.open(:host => "pan.suse.de", :port => 389, :encryption => :start_tls, :base => "o=Novell") do |ldap|
+      Net::LDAP.open(:host => host_name, :port => port_number, :encryption => :start_tls, :base => "o=Novell") do |ldap|
         ldap.search(:filter => search_filter, :attributes => result_attrs ) do | entry |
           result << entry.send(result_param).first
         end
