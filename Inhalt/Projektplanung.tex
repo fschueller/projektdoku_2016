@@ -33,7 +33,7 @@ Um die Übersichtlichkeit zu erhöhen, werden die Kosten wie folgt gegliedert un
 \subsection{Entwicklungsprozess}
 \label{sec:Entwicklungsprozess}
 Als Entwicklungsmethode wird \textit{Test Driven Development} (\acs{TDD}) eingesetzt. Diese Methode
-sieht vor, dass vor dem Schreiben des eigentichen Quellcodes zuerst der
+sieht vor, dass vor dem Schreiben des eigentlichen Quellcodes zuerst der
 dazugehörige Test entwickelt wird. Dadurch wird ein abstrakter und
 zielorientierter Blick auf die eigentlichen Anforderungen an die Applikation ermöglicht.
 Hierbei wird als erstes eine Überlegung über das Ergebnis einer Funktion angestellt und darauf
@@ -66,7 +66,7 @@ gekennzeichnet werden.
 
 \subsection{Wahl der Programmiersprache}
 \label{sec:Wahl der Programmiersprache}
-Als Programmiersprache wurden \textit{Ruby} und sein Web-Framework \textit{Ruby on Rails} gewählt.
+Als Programmiersprache wurden \textit{Ruby} und sein Web-Framework \textit{Ruby on Rails} (RoR) gewählt.
 Die entscheidenden Aspekte werden im folgenden Absatz erläutert.
 
 Die objektorientierte Programmiersprache Ruby legt Wert auf die Balance von \textit{funktionaler} und
@@ -96,7 +96,9 @@ Die Applikation wird durch zwei verschiedenen Arten von Usern verwendet:
 	\item Den regulären Mitarbeitern, die einzig Zugriff auf die eigenverwalteten Informationen über die jeweiligen externen Services haben
 	\item Den Administratoren, die alle Datensätze der in der Datenbank vorhandenen Mitarbeiter einsehen, abfragen und löschen können.
 \end{itemize}
-Die Rechteverwaltung kann mittels des Einsatzes von \textit{Flags} realisiert werden, welches auch die einfachste Methode darstellt. Aus Sichtweise der IT-Sicherheit ist diese jedoch nicht optimal, da eine Manipulation nicht ausschliessbar ist. Daher wurde entschieden, die Rechteverteilung auf
+Die Rechteverwaltung kann mittels des Einsatzes von \textit{Flags} realisiert werden, welches auch
+die einfachste Methode darstellt. Aus Sichtweise der IT-Sicherheit ist diese jedoch nicht optimal,
+da eine Manipulation nicht auszuschließen ist. Daher wurde entschieden, die Rechteverteilung auf
 Datenbankebene zu realisieren.
 
 \subsection{Datenmodell}

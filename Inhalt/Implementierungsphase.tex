@@ -32,16 +32,16 @@ möglich ist, die Ausführung von
 Entwicklungsschritten zu automatisieren. Beispielsweise kann das Anlegen
 von relevanten Dateien innerhalb der entsprechenden Verzeichnisstruktur
 direkt über diese Befehle erledigt werden, was zu einer Beschleunigung
-der Entwicklungsprozesse führt.
+des Entwicklungsprozesses führt.
 
 Das Gemfile bildet die zentrale Auflistung der von der Applikation genutzten Gems. Da die
-Entwicklung der Applikation im Sinne des \acs{TDD} (\Vgl \ref{sec:Entwicklungsprozess}) erfolgt,
+Entwicklung der Applikation im Sinne des \acs{TDD} (\Vgl Abschnitt~\ref{sec:Entwicklungsprozess}) erfolgt,
 wird hier zunächst die Testsuite \anf{rspec} hinzugefügt und die ersten Tests für die Models
-(\Vgl \ref{sec:Architekturdesign}) geschrieben.
+(\Vgl Abschnitt~\ref{sec:Architekturdesign}) geschrieben.
 
 \subsubsection{Erstellen der Models}
 \label{sec:Erstellen der Models}
-Erst nach Schreiben der Tests erfolgte die Erstellung der eigentlichen Model-Dateien samt jeweils
+Erst nach Schreiben der Tests erfolgt die Erstellung der eigentlichen Model-Dateien samt jeweils
 zugehörigen Attributen. Dies geschieht mit Hilfe sogenannter Migrationen,
 Datenbankoperationen geschrieben in Ruby. Zum Hinzufügen der so definierten Tabellen und Attribute
 zur Datenbank wird der Befehl \Code{rake db:migrate} ausgeführt, welcher die Ruby-Syntax in
@@ -67,18 +67,18 @@ Allerdings ist in jedem Controller mindestens eine Methode, die als
 durch einen Benutzer die Webseite zum Hinzufügen eines neuen Alias
 aufgerufen, wird diese Anfrage an die \Code{new}-Action des
 entsprechenden Controllers weitergeleitet.
-(\Vgl \ref{sec:Architekturdesign})
+(\Vgl Abschnitt~\ref{sec:Architekturdesign})
 
 Den Einstiegspunkt der Applikation bildet der \anf{Application Controller}. In diesem werden
 verschiedene Strategien implementiert, welche den Betrieb der gesamten Applikation betreffen,
 beispielsweise das initiale Aufrufen der Nutzerauthentifizierung. Alle anderen Controller erben von diesem
-Application Controller und verfügen damit bei Aufruf über alle dort niedergelegten Methoden.
+Application Controller und verfügen damit beim Aufruf über alle dort definierten Methoden.
 
 Zunächst wird der \anf{Externaltools Controller} erstellt. Alle relevanten Operationen
 wie Anzeige, Hinzufügen und Löschen von Daten des Tool-Models werden von diesem Controller
 verarbeitet. Dazu fragt der Controller Informationen zu dem eingeloggten Nutzer aus der User-Tabelle
 ab. Dies wird über das Objekt \Code{current user} realisiert. Das Objekt stammt aus dem
-eingesetzten Authentifizierungs-Gem \anf{Devise} (\Vgl \ref{sec:Anbindung externer Schnittstellen}).
+eingesetzten Authentifizierungs-Gem \anf{Devise} (\Vgl Abschnitt~\ref{sec:Anbindung externer Schnittstellen}).
 
 \snip{externaltools.controller.rb}{18}{33}
 
@@ -87,7 +87,7 @@ Um die Controller der dort zu implementierenden Funktionen vor einem unberechtig
 \anf{Admin Controller} erstellt. Dessen einzige Methode prüft, ob ein Administrator eingeloggt ist.
 Ist dies nicht der Fall, erfolgt eine Weiterleitung zur Index-Seite.
 
-Da nur die Administratoren die Möglichkeit besitzen sollen, Nutzer aus der Datenbank zu entfernen,
+Da nur Administratoren die Möglichkeit besitzen sollen, Nutzer aus der Datenbank zu entfernen,
 befindet sich der \anf{Users Controller} in diesem Unterverzeichnis. Als Kernstück dieses
 Controllers wird die \Code{list user}-Action implementiert, welche die gesammelten Informationen
 zu allen Mitarbeitern aus der Datenbank abfragt und die API bereitstellt.
@@ -104,18 +104,18 @@ Auch für diese werden Tests geschrieben, die sogenannten \textit{Feature Tests}
 Wie in der Projektplanung (\Vgl \ref{sec:Benutzeroberfläche}) niedergelegt, wird für die Implementierung
 das Framework Twitter Bootstrap verwendet.
 
-Die Nutzeroberfläche lässt sich zeitsparend mit den in Bootstrap vorhandenen Vorlagen erstellen. Die Farbgebung der Elemente wird gemäß der
-Firmenrichtlinien gestaltet.
+Die Nutzeroberfläche lässt sich zeitsparend mit den in Bootstrap vorhandenen Vorlagen erstellen.
+Die Farbgebung der Elemente wird gemäß der Firmenrichtlinien gestaltet.
 
 \abb{Nutzeroberfläche}{fig:Nutzeroberfläche}{externaltoolsscreen.pdf}{0.7}
 
 Als Strategie zur Verbesserung der Performance der Applikation werden sogenannte
 \textit{Partial Views} eingesetzt. Bei dieser Herangehensweise werden bei Bedarf nur die sich
-verändernden Elemente auf einer Webseite neu geladen, statt die komplette Seite neu abzurufen.
+verändernden Elemente auf einer Webseite neu geladen, anstatt die komplette Seite neu abzurufen.
 Dies verringert die benötigte Antwortzeit des Webservers erheblich.
 
 Für Zugang zu den Administratoransichten wird die reguläre Mitarbeiteransicht um weitere Tab-Elemente
-erweitert. Diese sind nur bei Login als Administrator sichtbar.
+erweitert. Diese sind nur beim Login als Administrator sichtbar.
 
 \subsection{Anbindung externer Schnittstellen}
 \label{sec:Anbindung externer Schnittstellen}
@@ -157,12 +157,12 @@ behinderte dies nicht den Abschluss des Projektes.
 
 \subsection{Interne Schnittstelle}
 \label{sec:Interne Schnittstelle}
-Die Schnittstelle wird für die Verarbeitung durch das Kommandozeilenwerkzeug \anf{etsync} entwickelt.
-Anhand des bestehenden Codes in \anf{etsync} wird die Ausgabe der Schnittstelle modelliert.
+Die Schnittstelle wird für die Verarbeitung durch das Kommandozeilenwerkzeug \Code{etsync} entwickelt.
+Anhand des bestehenden Codes in \Code{etsync} wird die Ausgabe der Schnittstelle modelliert.
 Wie bereits in der Planungsphase erwähnt, erfolgt die Realisierung in \acs{JSON},
 welches ein gebräuchliches Datenformat zum Austausch von Informationen zwischen Anwendungen ist.
 
-Um die gewünschten Informationen korrekt und einfach zu modellieren, wird das Gem \textit{rabl}
+Um die gewünschten Informationen korrekt und einfach zu modellieren, wird das Gem \anf{rabl}
 eingesetzt. Mit diesem Gem kann die JSON-Notation einfach als Datenbankabfragen in Ruby
 geschrieben werden und vermeidet so Fehler bei der sonst manuellen Erstellung einer JSON-Vorlage,
 welche viele Klammern und Satzzeichen verwendet. Auch können spätere Anpassungen so leichter
@@ -183,8 +183,8 @@ Durchlauf der Testsammlung statt.
 \label{sec:Paketierung der Applikation}
 Wie bereits in der Projektplanung dargelegt erfolgt nach Entwicklung und finaler Testphase der
 Applikation die Paketierung als RPM. Die Kontrollstruktur eines RPM-Pakets ist das sogenannte
-Specfile. In diesem werden alle relevanten Informationen zu dem Softwarepaket,
-wie beispielsweise Versionsnummer oder Abhängigkeiten auf andere Pakete, niedergelegt.
+Specfile. In dieser Datei werden alle relevanten Informationen zu dem Softwarepaket niedergelegt,
+wie beispielsweise Versionsnummer oder Abhängigkeiten auf andere Pakete.
 
 Um das Paket immer auf dem neuesten Stand zu halten, wird über ein Skript bei einer
 Codeaktualisierung des Projekts automatisch die Ausführung der Testsammlung ausgelöst.
@@ -194,7 +194,7 @@ oder ungetestete Funktionalität in das endgültige Paket gelangt.
 
 \subsection{Deployment}
 \label{sec:Deployment}
-Die Bereitstellung der Applikation geschieht in Kollaboration mit dem Team, in welchem das
+Die Bereitstellung der Applikation geschieht in Zusammenarbeit mit dem Team, in welchem das
 Projekt durchgeführt wurde. Auf einer Produktivmaschine, die bereits als Webserver für
 andere Applikationen fungiert, wird eine weitere Konfiguration angelegt und das Software-Paket der
 Applikation installiert. Nach Neustart der zugehörigen Services und Prozesse ist die

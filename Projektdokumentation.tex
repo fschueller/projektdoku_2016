@@ -31,11 +31,17 @@
 
 % Preface --------------------------------------------------------------------
 \phantomsection
-\pagenumbering{Roman}
+% \pagenumbering{Roman}
+\setcounter{page}{1}
 \pdfbookmark[1]{Inhaltsverzeichnis}{inhalt}
 \tableofcontents
 \cleardoublepage
 
+% Inhalt ---------------------------------------------------------------------
+% \pagenumbering{arabic}
+\input{Inhalt.tex}
+\clearpage
+% % Anhang ---------------------------------------------------------------------
 \phantomsection
 \listoffigures
 
@@ -56,15 +62,5 @@
 \markboth{\gloss}{\gloss}
 \addcontentsline{toc}{section}{\gloss}
 \input{Glossar}
-\clearpage
-
-% Inhalt ---------------------------------------------------------------------
-\pagenumbering{arabic}
-\input{Inhalt.tex}
-% % Anhang ---------------------------------------------------------------------
-% \clearpage
-% \appendix
-% \pagenumbering{roman}
-% \input{Anhang}
 
 \end{document}
