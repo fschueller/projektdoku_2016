@@ -66,7 +66,7 @@ gekennzeichnet werden.
 
 \subsection{Wahl der Programmiersprache}
 \label{sec:Wahl der Programmiersprache}
-Als Programmiersprache wurden \textit{Ruby} und sein Web-Framework \textit{Ruby on Rails} gewählt.
+Als Programmiersprache wurden \textit{Ruby} und sein Web-Framework \textit{Ruby on Rails} (RoR) gewählt.
 Die entscheidenden Aspekte werden im folgenden Absatz erläutert.
 
 Die objektorientierte Programmiersprache Ruby legt Wert auf die Balance von \textit{funktionaler} und
@@ -96,8 +96,10 @@ Die Applikation wird durch zwei verschiedenen Arten von Usern verwendet:
 	\item Den regulären Mitarbeitern, die einzig Zugriff auf die eigenverwalteten Informationen über die jeweiligen externen Services haben
 	\item Den Administratoren, die alle Datensätze der in der Datenbank vorhandenen Mitarbeiter einsehen, abfragen und löschen können.
 \end{itemize}
-Die Rechteverwaltung kann mittels des Einsatzes von \textit{Flags} realisiert werden, welches auch die einfachste Methode darstellt. Aus Sichtweise der IT-Sicherheit ist diese jedoch nicht optimal, da eine Manipulation nicht ausschliessbar ist. Daher wurde entschieden, die Rechteverteilung auf
-Datenbankebene zu realisieren.
+Die Rechteverwaltung kann mittels des Einsatzes von \textit{Flags}
+realisiert werden, welches auch die einfachste Methode darstellt. Aus Sichtweise der IT-Sicherheit ist diese jedoch nicht optimal, da eine
+Manipulation nicht auszuschließen ist.
+Daher wurde entschieden, die Rechteverteilung auf Datenbankebene zu realisieren.
 
 \subsection{Datenmodell}
 \label{sec:Datenmodell}
@@ -121,7 +123,7 @@ Die Hauptaufgabe der Applikation ist die Bereitstellung der gesammelten Informat
 Mitarbeitern und deren eingetragenen Informationen zu ihren genutzten Services. Dazu soll eine
 eigene Schnittstelle innerhalb der Applikation entwickelt werden, welche die Informationen im
 JSON-Format ausgibt. Diese Schnittstelle kann nur von einem Administrator angesprochen
-werden, der sich zuvor als solcher bei der Applikation authentisiert hat.
+werden, der sich zuvor als solcher bei der Applikation authentifiziert hat.
 
 \abb{Visualisierung der internen Schnittstelle}{fig:etsync-api}{etsync-api.pdf}{0.6}
 
